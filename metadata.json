@@ -1,0 +1,6 @@
+{
+  "name": "ARI SENSEI — Personal Digital Ecosystem",
+  "description": "Personal Digital Ecosystem & Portfolio CMS untuk Pak Ari Sensei (Ariansyah Imran, S.Pd., Gr.) — Guru PJOK, Content Creator, Graphic Designer, dan Digital Educator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

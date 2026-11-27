@@ -1,0 +1,2123 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070d14">
+<title>ARI SENSEI — Personal Digital Ecosystem</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     THEME TOKENS: MODE GELAP (DEFAULT) & MODE TERANG
+     ========================================================= */
+  :root,
+  [data-theme="dark"] {
+    --page-bg:
+      radial-gradient(circle at 10% 14%, rgba(114, 158, 184, 0.52) 0%, transparent 34%),
+      radial-gradient(circle at 90% 10%, rgba(92, 135, 160, 0.44) 0%, transparent 34%),
+      radial-gradient(circle at 86% 70%, rgba(69, 112, 138, 0.38) 0%, transparent 38%),
+      radial-gradient(circle at 14% 86%, rgba(74, 114, 138, 0.34) 0%, transparent 36%),
+      linear-gradient(155deg, #071018 0%, #112230 50%, #05090e 100%);
+    --text-main: #f4f8fc;
+    --text-sub: #c9d8e4;
+    --text-muted: #8fa5b8;
+    --nav-bg: linear-gradient(180deg, rgba(22, 31, 40, 0.92), rgba(8, 12, 17, 0.96));
+    --frame-bg:
+      radial-gradient(circle at 38% 42%, rgba(96, 146, 178, 0.30) 0%, transparent 46%),
+      linear-gradient(180deg, rgba(16, 26, 36, 0.72) 0%, rgba(9, 15, 22, 0.88) 100%);
+    --panel-solid: #05080c;
+    --panel-glass: linear-gradient(160deg, rgba(17, 29, 41, 0.86), rgba(7, 13, 20, 0.94));
+    --dock-bg: linear-gradient(180deg, rgba(24, 35, 46, 0.90), rgba(8, 13, 19, 0.94));
+    --pill-bg: linear-gradient(180deg, #1b2836, #0d141c);
+    --weather-bg: linear-gradient(145deg, rgba(198, 220, 235, 0.72), rgba(88, 115, 134, 0.45) 55%, rgba(16, 26, 35, 0.90));
+    --weather-icon: #0b1620;
+    --control-bg: linear-gradient(155deg, rgba(145, 175, 196, 0.30), rgba(18, 30, 42, 0.78));
+    --photo-stack-bg: linear-gradient(160deg, rgba(190, 214, 230, 0.34), rgba(22, 36, 50, 0.82));
+    --border-soft: rgba(198, 225, 244, 0.16);
+    --border-strong: rgba(198, 225, 244, 0.34);
+    --headline-grad: linear-gradient(180deg, #ffffff 0%, #dce8f2 55%, #8fa5b8 100%);
+    --shadow-heavy: 0 30px 90px rgba(0, 0, 0, 0.72);
+    --shadow-card: 0 18px 40px rgba(0, 0, 0, 0.55);
+    --dot-bg: radial-gradient(circle at 35% 30%, #d3dfe8, #758c9c);
+    --right-dock-top: rgba(10, 16, 23, 0.95);
+    --right-dock-top-text: #eef6fc;
+    --right-dock-bottom: linear-gradient(180deg, #5c7384, #d2e2ed);
+    --right-dock-bottom-text: #0b1620;
+    --tagline-bg: #04070b;
+    --tagline-text: #edf6fd;
+    --modal-bg: #0b1622;
+    --input-bg: #06111c;
+  }
+
+  [data-theme="light"] {
+    --page-bg:
+      radial-gradient(circle at 10% 14%, rgba(165, 211, 240, 0.65) 0%, transparent 38%),
+      radial-gradient(circle at 90% 12%, rgba(186, 222, 245, 0.60) 0%, transparent 36%),
+      radial-gradient(circle at 82% 76%, rgba(154, 198, 226, 0.45) 0%, transparent 40%),
+      linear-gradient(155deg, #e7f0f7 0%, #d4e3ee 50%, #eaf2f8 100%);
+    --text-main: #0d1a26;
+    --text-sub: #334a5e;
+    --text-muted: #587085;
+    --nav-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(236, 244, 250, 0.96));
+    --frame-bg:
+      radial-gradient(circle at 38% 42%, rgba(140, 194, 230, 0.35) 0%, transparent 48%),
+      linear-gradient(180deg, rgba(242, 248, 252, 0.85) 0%, rgba(223, 235, 244, 0.92) 100%);
+    --panel-solid: #ffffff;
+    --panel-glass: linear-gradient(160deg, rgba(255, 255, 255, 0.88), rgba(235, 244, 251, 0.94));
+    --dock-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(230, 240, 248, 0.95));
+    --pill-bg: linear-gradient(180deg, #ffffff, #e2edf5);
+    --weather-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(196, 220, 238, 0.85));
+    --weather-icon: #163047;
+    --control-bg: linear-gradient(155deg, rgba(255, 255, 255, 0.82), rgba(214, 230, 242, 0.86));
+    --photo-stack-bg: linear-gradient(160deg, rgba(255, 255, 255, 0.85), rgba(215, 231, 243, 0.90));
+    --border-soft: rgba(15, 36, 56, 0.12);
+    --border-strong: rgba(15, 36, 56, 0.24);
+    --headline-grad: linear-gradient(180deg, #0b1826 0%, #1d3c57 58%, #476c8a 100%);
+    --shadow-heavy: 0 28px 80px rgba(15, 36, 56, 0.16);
+    --shadow-card: 0 14px 32px rgba(15, 36, 56, 0.12);
+    --dot-bg: radial-gradient(circle at 35% 30%, #9ab3c7, #567085);
+    --right-dock-top: rgba(255, 255, 255, 0.96);
+    --right-dock-top-text: #0f2233;
+    --right-dock-bottom: linear-gradient(180deg, #2b4a64, #0f2233);
+    --right-dock-bottom-text: #f2f8fc;
+    --tagline-bg: #0f2233;
+    --tagline-text: #f4f9fd;
+    --modal-bg: #ffffff;
+    --input-bg: #eef4f9;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--page-bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.35s ease, color 0.35s ease;
+  }
+
+  .font-display {
+    font-family: 'Anton', Impact, sans-serif;
+    letter-spacing: 1.8px;
+    font-weight: 400;
+  }
+
+  .headline-metallic {
+    background: var(--headline-grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glass-nav {
+    background: var(--nav-bg);
+    border: 1px solid var(--border-soft);
+    backdrop-filter: blur(22px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .hero-outer {
+    background: var(--frame-bg);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-heavy);
+    backdrop-filter: blur(18px);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .top-solid-card {
+    background: var(--panel-solid);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-card);
+  }
+
+  .portfolio-notch-pill {
+    background: var(--pill-bg);
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-card);
+    letter-spacing: 8px;
+    text-indent: 8px;
+  }
+
+  .window-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background: var(--dot-bg);
+    box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .dock-shell {
+    background: var(--dock-bg);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(16px);
+  }
+
+  .weather-box {
+    background: var(--weather-bg);
+    color: var(--weather-icon);
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-card);
+  }
+
+  .control-box {
+    background: var(--control-bg);
+    border: 1px solid var(--border-strong);
+    backdrop-filter: blur(18px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .bento-glass {
+    background: var(--panel-glass);
+    border: 1px solid var(--border-soft);
+    backdrop-filter: blur(18px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .photo-stack-box {
+    background: var(--photo-stack-bg);
+    border: 1px solid var(--border-strong);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .pill-badge {
+    background: var(--pill-bg);
+    border: 1px solid var(--border-strong);
+    letter-spacing: 4px;
+    text-indent: 4px;
+  }
+
+  .tagline-pill {
+    background: var(--tagline-bg);
+    color: var(--tagline-text);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-card);
+  }
+
+  .right-dock-top {
+    background: var(--right-dock-top);
+    color: var(--right-dock-top-text);
+  }
+  .right-dock-bottom {
+    background: var(--right-dock-bottom);
+    color: var(--right-dock-bottom-text);
+  }
+
+  .tile-card {
+    background: var(--panel-glass);
+    border: 1px solid var(--border-soft);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .tile-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-strong);
+  }
+
+  /* ACTIVE NAV & PAGE TRANSITION */
+  .nav-item.active {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.32);
+  }
+  .page-view {
+    display: none;
+    animation: pageFadeIn 0.32s ease-out;
+  }
+  .page-view.active {
+    display: block;
+  }
+  @keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* HERO SUBJECT LAYER (Tinggi & menyatu dari atas kartu hitam sampai ke bawah) */
+  .hero-portrait-layer {
+    position: absolute;
+    left: 36%;
+    transform: translateX(-50%);
+    top: 56px;
+    width: 430px;
+    height: 700px;
+    z-index: 15;
+    pointer-events: none;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .hero-portrait-layer img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.55));
+    transition: transform 0.15s ease;
+  }
+
+  @media (max-width: 920px) {
+    .hero-portrait-layer {
+      left: 50%;
+      top: 110px;
+      width: 320px;
+      height: 500px;
+    }
+  }
+  @media (max-width: 640px) {
+    .hero-portrait-layer {
+      left: 50%;
+      top: 245px;
+      width: 240px;
+      height: 360px;
+    }
+  }
+</style>
+</head>
+<body class="antialiased selection:bg-sky-500/35">
+
+<!-- FULL WEB WRAPPER -->
+<div class="w-full max-w-[1260px] mx-auto px-3 sm:px-6 lg:px-8 pt-4 pb-16" id="publicSite">
+
+  <!-- TOP NAVIGATION BAR (PERSIS REFERENSI + THEME TOGGLE + STUDIO FOTO) -->
+  <nav class="glass-nav rounded-full px-4 sm:px-6 py-2.5 mb-5 sticky top-3 z-40" id="topbar">
+    <div class="flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <button type="button" aria-label="Menu" onclick="toggleMobileNav()" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-sky-500/15 transition">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="hidden md:flex items-center justify-center gap-2 lg:gap-4 flex-1 text-xs font-semibold tracking-[0.14em]" style="color:var(--text-sub)">
+        <button type="button" data-page="home" onclick="navigatePage('home')" class="nav-item active px-3.5 py-1.5 rounded-full hover:text-sky-400 transition">HOME</button>
+        <button type="button" data-page="about" onclick="navigatePage('about')" class="nav-item px-3.5 py-1.5 rounded-full hover:text-sky-400 transition">ABOUT</button>
+        <button type="button" data-page="writer" onclick="navigatePage('writer')" class="nav-item px-3.5 py-1.5 rounded-full hover:text-sky-400 transition">WRITER</button>
+        <button type="button" data-page="design" onclick="navigatePage('design')" class="nav-item px-3.5 py-1.5 rounded-full hover:text-sky-400 transition">DESIGN</button>
+        <button type="button" data-page="learning" onclick="navigatePage('learning')" class="nav-item px-3.5 py-1.5 rounded-full hover:text-sky-400 transition">BELAJAR</button>
+        <button type="button" data-page="products" onclick="navigatePage('products')" class="nav-item px-3.5 py-1.5 rounded-full hover:text-sky-400 transition">KARYA</button>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <!-- CMS Login (Khusus Admin) -->
+        <button type="button" onclick="openAdmin()" class="px-3.5 py-2 rounded-full text-[11px] font-bold tracking-wider border transition" style="border-color:var(--border-strong);background:var(--pill-bg)">
+          ADMIN CMS ↗
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileNav" class="hidden md:hidden pt-3 pb-1 border-t mt-2.5 grid grid-cols-3 gap-2 text-center text-[11px] font-semibold tracking-wider" style="border-color:var(--border-soft)">
+      <button type="button" data-page="home" onclick="navigatePage('home');toggleMobileNav()" class="nav-item active py-2 rounded-xl hover:bg-sky-500/15">HOME</button>
+      <button type="button" data-page="about" onclick="navigatePage('about');toggleMobileNav()" class="nav-item py-2 rounded-xl hover:bg-sky-500/15">ABOUT</button>
+      <button type="button" data-page="writer" onclick="navigatePage('writer');toggleMobileNav()" class="nav-item py-2 rounded-xl hover:bg-sky-500/15">WRITER</button>
+      <button type="button" data-page="design" onclick="navigatePage('design');toggleMobileNav()" class="nav-item py-2 rounded-xl hover:bg-sky-500/15">DESIGN</button>
+      <button type="button" data-page="learning" onclick="navigatePage('learning');toggleMobileNav()" class="nav-item py-2 rounded-xl hover:bg-sky-500/15">BELAJAR</button>
+      <button type="button" data-page="products" onclick="navigatePage('products');toggleMobileNav()" class="nav-item py-2 rounded-xl hover:bg-sky-500/15">KARYA</button>
+    </div>
+  </nav>
+
+  <!-- =========================================================
+       HALAMAN 1: HOME (HERO BENTO REFERENSI + HIGHLIGHT RINGKAS)
+       ========================================================= -->
+  <div id="page-home" class="page-view active">
+  <main id="home" class="hero-outer rounded-[36px] sm:rounded-[48px] p-3 sm:p-6 lg:p-8">
+
+    <!-- SLOT 1: FOTO UTAMA (DIKELOLA KHUSUS LEWAT CMS ADMIN) -->
+    <div class="hero-portrait-layer" id="heroPortraitSlot">
+      <div class="w-[240px] sm:w-[300px] h-[400px] sm:h-[500px] rounded-t-[150px] rounded-b-3xl border border-sky-400/25 bg-sky-950/30 backdrop-blur-md flex flex-col items-center justify-center text-center p-6 gap-2">
+        <div class="text-xs font-extrabold tracking-[0.25em] opacity-80">ARI SENSEI</div>
+        <p class="text-[11px] leading-relaxed opacity-60 max-w-[200px]">
+          Foto utama dikelola melalui Dashboard CMS Admin.
+        </p>
+      </div>
+    </div>
+
+    <!-- BAGIAN 1: KARTU HEADER ATAS (NOTCH PORTOFOLIO + AVATAR + JUDUL BESAR) -->
+    <section class="top-solid-card rounded-[30px] sm:rounded-[38px] p-4 sm:p-7 relative z-10 min-h-[270px] sm:min-h-[300px] flex flex-col justify-between">
+      <!-- Top Notch Row -->
+      <div class="grid grid-cols-3 items-center mb-4">
+        <div></div>
+        <div class="portfolio-notch-pill justify-self-center px-6 sm:px-12 py-2 rounded-full text-[10px] sm:text-xs font-extrabold">
+          PORTOFOLIO
+        </div>
+        <div class="justify-self-end flex items-center gap-2 pr-1" aria-hidden="true">
+          <span class="window-dot"></span>
+          <span class="window-dot"></span>
+          <span class="window-dot"></span>
+        </div>
+      </div>
+
+      <!-- Inner Top Content: Left Mini Profile & Right Headline -->
+      <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr_minmax(280px,410px)] gap-4 items-center">
+        <!-- SLOT 2: AVATAR BULAT KIRI ATAS -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1.5 border border-sky-300/45 bg-sky-500/10 shadow-[0_0_0_6px_rgba(148,197,230,0.10)] relative">
+            <div id="avatarSlot" class="w-full h-full rounded-full overflow-hidden bg-gradient-to-b from-sky-400/40 via-slate-700 to-slate-900 flex items-center justify-center font-extrabold text-xl text-white">
+              AS
+            </div>
+          </div>
+
+          <div class="flex items-center justify-center gap-2.5 mt-3 mb-1.5">
+            <a id="homeIgLink" href="https://instagram.com/arhykbs" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-7 h-7 rounded-lg border flex items-center justify-center hover:bg-sky-500 hover:text-white hover:border-sky-500 transition" style="border-color:var(--border-strong)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            </a>
+            <a id="homeFbLink" href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-7 h-7 rounded-lg border flex items-center justify-center hover:bg-sky-500 hover:text-white hover:border-sky-500 transition" style="border-color:var(--border-strong)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+            </a>
+          </div>
+          <div id="homeBadgeName" class="text-xs sm:text-sm font-bold tracking-wide">Pak Ari Sensei</div>
+          <div class="mt-1 flex flex-col items-center gap-0.5 text-[10px]" style="color:var(--text-muted)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span>New Post</span>
+          </div>
+        </div>
+
+        <!-- Ruang Tengah untuk Kepala & Bahu Foto Utama -->
+        <div class="hidden sm:block"></div>
+
+        <!-- Judul Besar & Bio Singkat Kanan -->
+        <div class="text-center sm:text-left">
+          <h1 id="homeHeadline" class="font-display headline-metallic text-3xl sm:text-5xl lg:text-[54px] leading-none uppercase whitespace-nowrap mb-2.5">
+            PAK ARI SENSEI
+          </h1>
+          <p id="homeSubtitle" class="text-xs sm:text-sm font-bold mb-1">Personal Digital Ecosystem</p>
+          <p id="homeBioShort" class="text-xs sm:text-[13px] leading-relaxed" style="color:var(--text-sub)">
+            Guru PJOK, Content Creator, Graphic Designer, dan Digital Educator. Ruang untuk berbagi karya, pengetahuan, kreativitas, serta inovasi pendidikan.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAGIAN 2: AREA TENGAH & BAWAH (DOCK KIRI + WIDGET iOS + KARTU MENYATU + GALERI KANAN) -->
+    <div class="relative z-20 mt-5 grid grid-cols-[48px_1fr_52px] sm:grid-cols-[84px_1fr_74px] gap-2.5 sm:gap-5 items-stretch">
+
+      <!-- KIRI: DOCK VERTIKAL + SLIDER TRANSLUCENT + FINGERPRINT -->
+      <aside class="flex flex-col justify-between items-center gap-4">
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <!-- Main Vertical Story Dock -->
+          <div class="dock-shell w-11 sm:w-[54px] py-3 rounded-full flex flex-col items-center gap-2">
+            <button type="button" onclick="jump('about')" title="Tentang Saya" class="w-9 h-9 rounded-xl hover:bg-sky-500/20 flex items-center justify-center font-bold text-sm transition">Aa</button>
+            <button type="button" onclick="jump('writer')" title="Artikel" class="w-9 h-9 rounded-xl hover:bg-sky-500/20 flex items-center justify-center transition">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.74-8z"/></svg>
+            </button>
+            <button type="button" onclick="jump('design')" title="Desain & Portofolio" class="w-9 h-9 rounded-xl hover:bg-sky-500/20 flex items-center justify-center transition">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+            </button>
+            <button type="button" onclick="jump('learning')" title="Pusat Belajar" class="w-9 h-9 rounded-xl hover:bg-sky-500/20 flex items-center justify-center transition">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+            </button>
+            <button type="button" onclick="jump('products')" title="Karya Digital" class="w-9 h-9 rounded-xl hover:bg-sky-500/20 flex items-center justify-center transition">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+            </button>
+            <button type="button" onclick="jump('design')" title="Galeri Karya" class="w-9 h-9 rounded-xl hover:bg-sky-500/20 flex items-center justify-center transition">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+            <button type="button" onclick="jump('contact')" title="Kontak" class="w-9 h-9 rounded-xl hover:bg-sky-500/20 flex items-center justify-center transition">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor"/></svg>
+            </button>
+            <button type="button" onclick="jump('home')" title="Ke Atas" class="w-9 h-9 rounded-xl hover:bg-sky-500/20 flex items-center justify-center transition">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+            </button>
+          </div>
+
+          <!-- Aksen Slider Vertikal seperti di Referensi -->
+          <div class="hidden sm:flex flex-col items-center gap-1.5">
+            <span class="text-[9px] font-bold opacity-60">100%</span>
+            <div class="w-3.5 h-36 rounded-full dock-shell p-0.5 flex flex-col justify-end overflow-hidden">
+              <div class="w-full h-2/3 rounded-full bg-gradient-to-t from-sky-500/70 to-sky-300/40"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fingerprint Button (Akses CMS Admin) -->
+        <button type="button" onclick="openAdmin()" title="Login CMS Admin" class="dock-shell w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center hover:border-sky-400 transition">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+            <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
+            <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
+            <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/>
+            <path d="M2 12a10 10 0 0 1 18-6"/>
+            <path d="M2 16h.01"/>
+            <path d="M21.8 16c.2-2 .131-5.354 0-6"/>
+            <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/>
+            <path d="M8.65 22c.21-.66.45-1.32.57-2"/>
+            <path d="M9 6.8a6 6 0 0 1 9 5.2v2"/>
+          </svg>
+        </button>
+      </aside>
+
+      <!-- TENGAH: WIDGET iOS + KARTU MENYATU PENULIS & INTRODUCE MY SELF + PHOTO STACK -->
+      <div class="flex flex-col justify-between min-h-[470px] sm:min-h-[510px] gap-6">
+
+        <!-- BARIS TENGAH KANAN: STATUS BAR + CONTROL CENTER 2x2 -->
+        <div class="flex flex-col items-end gap-4 pt-1">
+          <!-- Status Bar Pill -->
+          <div class="top-solid-card inline-flex items-center gap-4 px-5 py-2.5 rounded-full">
+            <svg width="16" height="14" viewBox="0 0 18 14" fill="currentColor"><rect x="0" y="9" width="3" height="5" rx="1"/><rect x="5" y="6" width="3" height="8" rx="1"/><rect x="10" y="3" width="3" height="11" rx="1"/><rect x="15" y="0" width="3" height="14" rx="1"/></svg>
+            <svg width="16" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
+            <svg width="24" height="13" viewBox="0 0 28 14" fill="none"><rect x="1" y="1" width="22" height="12" rx="3" stroke="currentColor" stroke-width="1.8"/><rect x="3.5" y="3.5" width="15" height="7" rx="1.2" fill="currentColor"/><rect x="24.5" y="4.5" width="2.5" height="5" rx="1" fill="currentColor"/></svg>
+          </div>
+
+          <!-- 2x2 Control Center -->
+          <div class="flex flex-wrap items-center justify-end gap-4 mt-4 sm:mt-8">
+            <div class="control-box w-[118px] p-3 rounded-[26px] grid grid-cols-2 gap-2.5">
+              <button type="button" onclick="toggleControlBtn(this,'bg-[#0a84ff]')" title="Mode Pesawat" class="w-10 h-10 rounded-full bg-slate-900/80 text-slate-100 flex items-center justify-center hover:scale-105 transition">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+              </button>
+              <button type="button" onclick="toggleControlBtn(this,'bg-[#34c759]')" title="Jaringan Aktif" class="w-10 h-10 rounded-full bg-[#34c759] text-white shadow-[0_0_16px_rgba(52,199,89,0.55)] flex items-center justify-center hover:scale-105 transition">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+              </button>
+              <button type="button" onclick="toggleControlBtn(this,'bg-[#0a84ff]')" title="Wi-Fi" class="w-10 h-10 rounded-full bg-slate-900/80 text-slate-100 flex items-center justify-center hover:scale-105 transition">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+              </button>
+              <button type="button" onclick="toggleControlBtn(this,'bg-[#0a84ff]')" title="Bluetooth" class="w-10 h-10 rounded-full bg-[#0a84ff] text-white shadow-[0_0_16px_rgba(10,132,255,0.55)] flex items-center justify-center hover:scale-105 transition">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6.5 6.5 17.5 17.5 12 23 12 1 17.5 6.5 6.5 17.5"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- BARIS BAWAH: KARTU MENYATU (PENULIS + INTRODUCE MY SELF) & KOLOM PHOTO KANAN -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_144px] gap-4 items-end mt-auto">
+
+          <!-- KARTU MENYATU SEPERTI REFERENSI -->
+          <div class="flex flex-col">
+            <!-- Baris Label Atas: Pill PENULIS di kiri, Judul INTRODUCE MY SELF di kanan -->
+            <div class="grid grid-cols-1 sm:grid-cols-[195px_1fr] gap-4 items-end mb-2.5 px-1">
+              <div class="pill-badge py-2 px-5 rounded-full text-center text-[10px] sm:text-[11px] font-extrabold">
+                PENULIS
+              </div>
+              <div class="hidden sm:block pl-1">
+                <h2 class="text-lg sm:text-xl font-extrabold tracking-wider leading-tight">
+                  INTRODUCE<br>MY SELF
+                </h2>
+              </div>
+            </div>
+
+            <!-- Badan Kartu Menyatu -->
+            <article id="homeAboutCard" class="bento-glass rounded-[28px] p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-[195px_1fr] gap-4 sm:gap-5 items-center">
+              <!-- SLOT 3: FOTO KARTU PENULIS -->
+              <div>
+                <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-slate-700 to-slate-900 border border-white/20 flex items-center justify-center text-[10px] tracking-widest text-sky-200">
+                  <div id="writerPhotoSlot" class="w-full h-full flex flex-col items-center justify-center gap-1 p-2 text-center">
+                    <span class="font-bold opacity-80">PENULIS</span>
+                  </div>
+                </div>
+                <div class="flex justify-between text-[7.5px] tracking-wider font-bold pt-2 px-0.5" style="color:var(--text-muted)">
+                  <span>SLO-MO</span>
+                  <span>VIDEO</span>
+                  <span class="text-amber-500">PHOTO</span>
+                  <span>PORTRAIT</span>
+                  <span>SQUARE</span>
+                </div>
+              </div>
+
+              <!-- Teks Bio -->
+              <div>
+                <h2 class="sm:hidden text-lg font-extrabold tracking-wider leading-tight mb-2">INTRODUCE MY SELF</h2>
+                <p id="homeIntroBio" class="text-xs sm:text-[13.5px] leading-relaxed" style="color:var(--text-sub)">
+                  Saya <strong>Ariansyah Imran, S.Pd., Gr.</strong> Seorang pendidik PJOK yang tertarik pada teknologi pendidikan, desain grafis, konten kreatif, dan pengembangan solusi digital untuk guru di Indonesia.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <!-- KANAN BAWAH: LABEL PHOTO + 2 SLOT FOTO GALERI -->
+          <div class="flex flex-col">
+            <div class="top-solid-card w-full py-2 px-4 rounded-full text-center text-[10px] font-extrabold tracking-[0.22em] mb-2.5">
+              PHOTO
+            </div>
+            <div class="photo-stack-box rounded-[26px] p-2.5 grid grid-cols-2 lg:grid-cols-1 gap-2.5">
+              <!-- SLOT 4: GALERI 1 -->
+              <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-slate-700 to-slate-900 border border-white/20 flex items-center justify-center text-[9px] tracking-widest text-sky-200">
+                <div id="gallerySlot1" class="w-full h-full flex flex-col items-center justify-center gap-0.5 text-center p-1">
+                  <span class="font-bold opacity-80">GALERI 1</span>
+                </div>
+              </div>
+
+              <!-- SLOT 5: GALERI 2 -->
+              <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-slate-700 to-slate-900 border border-white/20 flex items-center justify-center text-[9px] tracking-widest text-sky-200">
+                <div id="gallerySlot2" class="w-full h-full flex flex-col items-center justify-center gap-0.5 text-center p-1">
+                  <span class="font-bold opacity-80">GALERI 2</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KANAN: WIDGET CUACA (TOMBOL GANTI TEMA GELAP / TERANG) + QUICK DOCK VERTIKAL -->
+      <aside class="flex flex-col items-center justify-start gap-4 pt-1">
+        <button type="button" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Ganti Tema Gelap / Terang" title="Klik untuk Ganti Tema Gelap / Terang" class="weather-box w-12 h-11 sm:w-[70px] sm:h-[60px] rounded-2xl flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95 transition">
+          <!-- Ikon Mode Gelap: Awan & Bulan Sabit (bersih tanpa garis bertumpuk) -->
+          <svg id="weatherIconDark" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18.2 3.2a3.3 3.3 0 0 0 3.1 4.4 3.3 3.3 0 1 1-3.1-4.4Z" />
+            <path d="M6.5 19.2h9.8a3.4 3.4 0 0 0 .5-6.76 4.8 4.8 0 0 0-9.35-1.14 3.8 3.8 0 0 0-.95 7.9Z" />
+          </svg>
+          <!-- Ikon Mode Terang: Awan & Matahari -->
+          <svg id="weatherIconLight" class="hidden" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="17.5" cy="7" r="2.4" />
+            <path d="M17.5 2.6v1M21.8 7h-1M20.5 4l-.7.7M14.5 4l.7.7" />
+            <path d="M6.5 19.2h9.8a3.4 3.4 0 0 0 .5-6.76 4.8 4.8 0 0 0-9.35-1.14 3.8 3.8 0 0 0-.95 7.9Z" />
+          </svg>
+        </button>
+
+        <div class="w-11 sm:w-14 rounded-3xl overflow-hidden border shadow-2xl flex flex-col" style="border-color:var(--border-strong)">
+          <div class="right-dock-top py-3.5 flex flex-col items-center gap-3.5">
+            <button type="button" onclick="jump('home')" title="Beranda" class="w-8 h-8 rounded-xl hover:bg-sky-500/20 flex items-center justify-center transition">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 8h-3v9h-5v-6h-2v6H6v-9H3l9-8z"/></svg>
+            </button>
+            <button type="button" onclick="jump('writer')" title="Artikel" class="w-8 h-8 rounded-xl hover:bg-sky-500/20 flex items-center justify-center transition">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+            </button>
+          </div>
+          <div class="right-dock-bottom py-3.5 flex flex-col items-center gap-3.5">
+            <button type="button" onclick="jump('products')" title="Produk Digital" class="w-8 h-8 rounded-xl hover:bg-black/15 flex items-center justify-center transition">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </button>
+            <button type="button" onclick="jump('contact')" title="Kolaborasi" class="w-8 h-8 rounded-xl hover:bg-black/15 flex items-center justify-center transition">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- BOTTOM TAGLINE BAR -->
+    <div id="homeTagline" class="tagline-pill mt-6 mx-auto max-w-3xl py-3.5 px-6 rounded-full text-center text-[10px] sm:text-xs font-extrabold tracking-[0.28em] relative z-20">
+      BERBAGI ILMU · BERKARYA · MENGINSPIRASI
+    </div>
+
+    <!-- AKSEN DOCK BAWAH DENGAN 2 TITIK (PERSIS REFERENSI) -->
+    <div class="mt-4 mx-auto max-w-4xl flex items-center justify-between px-6 py-2.5 rounded-full top-solid-card relative z-20 opacity-90" aria-hidden="true">
+      <span class="window-dot"></span>
+      <div class="w-28 sm:w-44 h-1.5 rounded-full bg-sky-400/30"></div>
+      <span class="window-dot"></span>
+    </div>
+  </main>
+
+  <!-- AKSES CEPAT KE HALAMAN LAIN DARI BERANDA -->
+  <section class="pt-10">
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
+      <button type="button" onclick="navigatePage('about')" class="tile-card rounded-2xl p-4 text-left group">
+        <div class="text-[10px] font-bold tracking-widest text-sky-400 mb-1">01 · PROFIL</div>
+        <div class="text-sm font-extrabold group-hover:text-sky-400 transition">About Me ↗</div>
+        <p class="text-[11px] mt-1" style="color:var(--text-muted)">Biodata, karier & keahlian</p>
+      </button>
+      <button type="button" onclick="navigatePage('writer')" class="tile-card rounded-2xl p-4 text-left group">
+        <div class="text-[10px] font-bold tracking-widest text-sky-400 mb-1">02 · LITERASI</div>
+        <div class="text-sm font-extrabold group-hover:text-sky-400 transition">Writer & Artikel ↗</div>
+        <p class="text-[11px] mt-1" style="color:var(--text-muted)">Tulisan PJOK & EduTech</p>
+      </button>
+      <button type="button" onclick="navigatePage('design')" class="tile-card rounded-2xl p-4 text-left group">
+        <div class="text-[10px] font-bold tracking-widest text-sky-400 mb-1">03 · VISUAL</div>
+        <div class="text-sm font-extrabold group-hover:text-sky-400 transition">Design Showcase ↗</div>
+        <p class="text-[11px] mt-1" style="color:var(--text-muted)">Galeri karya & portofolio</p>
+      </button>
+      <button type="button" onclick="navigatePage('learning')" class="tile-card rounded-2xl p-4 text-left group">
+        <div class="text-[10px] font-bold tracking-widest text-sky-400 mb-1">04 · EDUKASI</div>
+        <div class="text-sm font-extrabold group-hover:text-sky-400 transition">Pusat Belajar ↗</div>
+        <p class="text-[11px] mt-1" style="color:var(--text-muted)">Modul & perangkat guru</p>
+      </button>
+      <button type="button" onclick="navigatePage('products')" class="tile-card rounded-2xl p-4 text-left group col-span-2 lg:col-span-1">
+        <div class="text-[10px] font-bold tracking-widest text-sky-400 mb-1">05 · DIGITAL</div>
+        <div class="text-sm font-extrabold group-hover:text-sky-400 transition">Karya & Produk ↗</div>
+        <p class="text-[11px] mt-1" style="color:var(--text-muted)">Template & asisten PJOK</p>
+      </button>
+    </div>
+  </section>
+  </div>
+
+  <!-- =========================================================
+       HALAMAN 2: ABOUT (FOTO PROFIL + MEDSOS & LINK + KEAHLIAN)
+       ========================================================= -->
+  <div id="page-about" class="page-view">
+    <section class="hero-outer rounded-[34px] p-6 sm:p-10 mb-6">
+      <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
+
+        <!-- KOLOM KIRI: FOTO PROFIL & IDENTITAS SINGKAT -->
+        <div class="flex flex-col items-center text-center bento-glass rounded-3xl p-5">
+          <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-3xl p-1.5 border-2 border-sky-400/45 bg-sky-500/10 shadow-xl overflow-hidden mb-4">
+            <div id="aboutPhotoSlot" class="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-sky-500/30 via-slate-800 to-slate-950 flex flex-col items-center justify-center text-sky-200 gap-1">
+              <span class="text-4xl font-extrabold">AS</span>
+              <span class="text-[10px] tracking-widest opacity-70">ARI SENSEI</span>
+            </div>
+          </div>
+
+          <div id="aboutCardName" class="text-base font-extrabold tracking-wide">Ariansyah Imran, S.Pd., Gr.</div>
+          <div id="aboutCardAlias" class="text-xs font-semibold text-sky-400 mt-0.5 mb-4">@arhykbs · Ari Sensei</div>
+
+          <div class="w-full grid grid-cols-2 gap-2">
+            <button type="button" onclick="navigatePage('products')" class="py-2 px-3 rounded-xl bg-sky-500/15 hover:bg-sky-500 hover:text-white border border-sky-400/30 text-[11px] font-bold transition">
+              ✦ Karya Digital
+            </button>
+            <button type="button" onclick="jump('contact')" class="py-2 px-3 rounded-xl border text-[11px] font-bold hover:border-sky-400 transition" style="border-color:var(--border-strong)">
+              ✉ Kolaborasi
+            </button>
+          </div>
+        </div>
+
+        <!-- KOLOM KANAN: BIO LENGKAP + MEDSOS & LINK AKTIF + STATISTIK -->
+        <div>
+          <span class="pill-badge inline-block px-4 py-1.5 rounded-full text-[10px] font-extrabold mb-3">ABOUT · PROFIL LENGKAP</span>
+          <h2 id="aboutHeadline" class="font-display headline-metallic text-4xl sm:text-5xl lg:text-6xl uppercase leading-none mb-2">PAK ARI SENSEI</h2>
+          <p id="aboutRoleLine" class="text-xs sm:text-sm font-bold text-sky-400 mb-4">S.Pd., Gr. · Pendidik PJOK · Digital Educator · Graphic Designer</p>
+          <p id="aboutBioFull" class="text-sm leading-relaxed mb-6" style="color:var(--text-sub)">
+            Dikenal juga sebagai <strong>Ari Sensei</strong>, saya adalah seorang pendidik Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK) yang berfokus pada integrasi teknologi pendidikan, desain komunikasi visual, serta pengembangan solusi digital praktis untuk membantu guru dan siswa belajar lebih bermakna.
+          </p>
+
+          <!-- TAUTAN MEDSOS & LINK PENTING -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xs font-extrabold tracking-[0.2em] uppercase text-sky-400">Media Sosial &amp; Tautan Resmi</h3>
+            </div>
+            <div id="aboutSocialGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5"></div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3">
+            <div class="bento-glass rounded-2xl p-4 text-center">
+              <div class="text-xl sm:text-2xl font-extrabold text-sky-400">PJOK</div>
+              <div class="text-[11px] mt-1" style="color:var(--text-muted)">Spesialisasi Guru</div>
+            </div>
+            <div class="bento-glass rounded-2xl p-4 text-center">
+              <div class="text-xl sm:text-2xl font-extrabold text-sky-400">Design</div>
+              <div class="text-[11px] mt-1" style="color:var(--text-muted)">Visual &amp; Konten</div>
+            </div>
+            <div class="bento-glass rounded-2xl p-4 text-center">
+              <div class="text-xl sm:text-2xl font-extrabold text-sky-400">EduTech</div>
+              <div class="text-[11px] mt-1" style="color:var(--text-muted)">Inovasi Digital</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BAR FOKUS KEAHLIAN -->
+      <div class="bento-glass rounded-3xl p-6 mt-6">
+        <h3 class="text-xs font-extrabold tracking-[0.2em] uppercase text-sky-400 mb-4">Fokus Keahlian</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1"><span>Pembelajaran &amp; Kurikulum PJOK</span><span>95%</span></div>
+            <div class="h-2 rounded-full bg-sky-500/15 overflow-hidden"><div class="h-full w-[95%] rounded-full bg-sky-500"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1"><span>Graphic Design &amp; Visual Branding</span><span>90%</span></div>
+            <div class="h-2 rounded-full bg-sky-500/15 overflow-hidden"><div class="h-full w-[90%] rounded-full bg-sky-400"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1"><span>Teknologi Pendidikan &amp; AI untuk Guru</span><span>92%</span></div>
+            <div class="h-2 rounded-full bg-sky-500/15 overflow-hidden"><div class="h-full w-[92%] rounded-full bg-indigo-400"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1"><span>Content Creation &amp; Penulisan Edukatif</span><span>88%</span></div>
+            <div class="h-2 rounded-full bg-sky-500/15 overflow-hidden"><div class="h-full w-[88%] rounded-full bg-emerald-400"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="tile-card rounded-3xl p-6">
+        <div class="text-xs font-extrabold tracking-widest text-sky-400 mb-2">PERAN 01</div>
+        <h3 class="text-base font-bold mb-2">Guru PJOK Profesional</h3>
+        <p class="text-xs sm:text-sm leading-relaxed" style="color:var(--text-sub)">Merancang pembelajaran olahraga yang aktif, inklusif, menyenangkan, dan selaras dengan Kurikulum Merdeka serta pendekatan Pembelajaran Mendalam.</p>
+      </div>
+      <div class="tile-card rounded-3xl p-6">
+        <div class="text-xs font-extrabold tracking-widest text-sky-400 mb-2">PERAN 02</div>
+        <h3 class="text-base font-bold mb-2">Kreator & Desainer Grafis</h3>
+        <p class="text-xs sm:text-sm leading-relaxed" style="color:var(--text-sub)">Membuat poster edukasi, infografis olahraga, media presentasi interaktif, dan konten visual kreatif yang mudah dipahami lintas audiens.</p>
+      </div>
+      <div class="tile-card rounded-3xl p-6">
+        <div class="text-xs font-extrabold tracking-widest text-sky-400 mb-2">PERAN 03</div>
+        <h3 class="text-base font-bold mb-2">Pengembang Ekosistem Digital</h3>
+        <p class="text-xs sm:text-sm leading-relaxed" style="color:var(--text-sub)">Membangun alat bantu, template administrasi, dan asisten digital untuk mempercepat kerja administratif para pendidik Indonesia.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================================
+       HALAMAN 3: WRITER (TAMPILAN MAJALAH / BLOG EDITORIAL + FILTER)
+       ========================================================= -->
+  <div id="page-writer" class="page-view">
+    <section class="hero-outer rounded-[34px] p-6 sm:p-8 mb-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="pill-badge inline-block px-4 py-1.5 rounded-full text-[10px] font-extrabold mb-3">WRITER · RUANG LITERASI</span>
+          <h2 class="font-display headline-metallic text-4xl sm:text-5xl uppercase leading-none">ARTIKEL &amp; CATATAN</h2>
+          <p class="text-xs sm:text-sm mt-2 max-w-xl" style="color:var(--text-sub)">Kumpulan tulisan seputar pembelajaran PJOK, pemanfaatan AI untuk pendidik, desain media ajar, dan refleksi dunia pendidikan.</p>
+        </div>
+        <div class="w-full md:w-72">
+          <input id="articleSearch" type="search" oninput="filterArticles()" placeholder="Cari judul artikel..." class="w-full px-4 py-2.5 rounded-full text-xs border outline-none focus:border-sky-400" style="background:var(--input-bg);border-color:var(--border-strong);color:var(--text-main)">
+        </div>
+      </div>
+      <div id="articleCategoryPills" class="flex flex-wrap gap-2 mt-5"></div>
+    </section>
+
+    <div id="featuredArticleSlot" class="mb-6"></div>
+    <div id="articleCards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+
+  <!-- =========================================================
+       HALAMAN 4: DESIGN (TAMPILAN GALERI SHOWCASE & LIGHTBOX)
+       ========================================================= -->
+  <div id="page-design" class="page-view">
+    <section class="hero-outer rounded-[34px] p-6 sm:p-8 mb-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="pill-badge inline-block px-4 py-1.5 rounded-full text-[10px] font-extrabold mb-3">DESIGN · VISUAL SHOWCASE</span>
+          <h2 class="font-display headline-metallic text-4xl sm:text-5xl uppercase leading-none">DESIGN &amp; PORTOFOLIO</h2>
+          <p class="text-xs sm:text-sm mt-2 max-w-xl" style="color:var(--text-sub)">Eksplorasi karya desain grafis, identitas visual, antarmuka web edukasi, serta konten kreatif yang dikelola langsung melalui CMS.</p>
+        </div>
+        <button type="button" onclick="jump('contact')" class="px-5 py-2.5 rounded-full bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold tracking-wider transition w-max">
+          KOLABORASI DESAIN ↗
+        </button>
+      </div>
+      <div id="portfolioCategoryPills" class="flex flex-wrap gap-2 mt-5"></div>
+    </section>
+
+    <div id="portfolioCards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </div>
+
+  <!-- =========================================================
+       HALAMAN 5: BELAJAR (TAMPILAN LEARNING HUB & JALUR MATERI)
+       ========================================================= -->
+  <div id="page-learning" class="page-view">
+    <section class="hero-outer rounded-[34px] p-6 sm:p-8 mb-6">
+      <span class="pill-badge inline-block px-4 py-1.5 rounded-full text-[10px] font-extrabold mb-3">PUSAT BELAJAR · EDUKASI</span>
+      <h2 class="font-display headline-metallic text-4xl sm:text-5xl uppercase leading-none mb-2">RUANG BELAJAR GURU &amp; SISWA</h2>
+      <p class="text-xs sm:text-sm max-w-2xl" style="color:var(--text-sub)">Pilih jalur belajar yang Anda butuhkan — mulai dari materi praktik PJOK, penyusunan administrasi Kurikulum Merdeka, hingga tutorial teknologi pendidikan.</p>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <article class="tile-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-sky-500/15 border border-sky-400/30 flex items-center justify-center text-2xl">⚽</div>
+            <span class="text-[10px] font-bold px-3 py-1 rounded-full bg-sky-500/15 text-sky-400">MODUL PRAKTIK</span>
+          </div>
+          <h3 class="text-lg font-extrabold mb-2">Pembelajaran PJOK</h3>
+          <p class="text-xs sm:text-sm leading-relaxed mb-4" style="color:var(--text-sub)">Materi, variasi permainan pemanasan, teknik dasar olahraga, dan rubrik asesmen praktik untuk SD, SMP, dan SMA.</p>
+          <ul class="space-y-2 text-xs mb-5" style="color:var(--text-sub)">
+            <li class="flex items-center gap-2"><span class="text-sky-400">✓</span> Permainan Bola Besar &amp; Bola Kecil</li>
+            <li class="flex items-center gap-2"><span class="text-sky-400">✓</span> Kebugaran Jasmani &amp; Senam Lantai</li>
+            <li class="flex items-center gap-2"><span class="text-sky-400">✓</span> Pendekatan Deep Learning di Lapangan</li>
+          </ul>
+        </div>
+        <button type="button" onclick="navigatePage('writer')" class="w-full py-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500 hover:text-white border border-sky-400/30 text-xs font-bold transition">Baca Materi Terkait →</button>
+      </article>
+
+      <article class="tile-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-400/30 flex items-center justify-center text-2xl">▣</div>
+            <span class="text-[10px] font-bold px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400">KURIKULUM MERDEKA</span>
+          </div>
+          <h3 class="text-lg font-extrabold mb-2">Administrasi Guru</h3>
+          <p class="text-xs sm:text-sm leading-relaxed mb-4" style="color:var(--text-sub)">Panduan dan contoh struktur perangkat ajar agar guru lebih siap mengajar tanpa terbebani administrasi berulang.</p>
+          <ul class="space-y-2 text-xs mb-5" style="color:var(--text-sub)">
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Alur Tujuan Pembelajaran (ATP) &amp; CP</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Template Modul Ajar &amp; LKPD PJOK</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Format Asesmen Formatif &amp; Sumatif</li>
+          </ul>
+        </div>
+        <button type="button" onclick="navigatePage('products')" class="w-full py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 hover:text-white border border-emerald-400/30 text-xs font-bold transition">Lihat Perangkat &amp; Template →</button>
+      </article>
+
+      <article class="tile-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-400/30 flex items-center justify-center text-2xl">✦</div>
+            <span class="text-[10px] font-bold px-3 py-1 rounded-full bg-indigo-500/15 text-indigo-400">EDUTECH &amp; AI</span>
+          </div>
+          <h3 class="text-lg font-extrabold mb-2">Teknologi Pendidikan</h3>
+          <p class="text-xs sm:text-sm leading-relaxed mb-4" style="color:var(--text-sub)">Tutorial pemanfaatan AI, desain presentasi modern, dan web tools gratis untuk meningkatkan kualitas pembelajaran digital.</p>
+          <ul class="space-y-2 text-xs mb-5" style="color:var(--text-sub)">
+            <li class="flex items-center gap-2"><span class="text-indigo-400">✓</span> Prompting AI untuk Perangkat Ajar</li>
+            <li class="flex items-center gap-2"><span class="text-indigo-400">✓</span> Desain Media Visual &amp; Infografis</li>
+            <li class="flex items-center gap-2"><span class="text-indigo-400">✓</span> Website Portofolio &amp; CMS Guru</li>
+          </ul>
+        </div>
+        <button type="button" onclick="navigatePage('design')" class="w-full py-2.5 rounded-xl bg-indigo-500/15 hover:bg-indigo-500 hover:text-white border border-indigo-400/30 text-xs font-bold transition">Eksplorasi Karya Digital →</button>
+      </article>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       HALAMAN 6: KARYA (TAMPILAN ETALASE PRODUK DIGITAL)
+       ========================================================= -->
+  <div id="page-products" class="page-view">
+    <section class="hero-outer rounded-[34px] p-6 sm:p-9 mb-6">
+      <div class="grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr] gap-6 items-center">
+        <div>
+          <span class="pill-badge inline-block px-4 py-1.5 rounded-full text-[10px] font-extrabold mb-3">FLAGSHIP PRODUCT · ARI SENSEI</span>
+          <h2 class="font-display headline-metallic text-4xl sm:text-5xl uppercase leading-none mb-3">ASISTEN DIGITAL GURU PJOK</h2>
+          <p class="text-xs sm:text-sm leading-relaxed mb-5" style="color:var(--text-sub)">
+            Solusi digital siap pakai yang dirancang khusus membantu guru PJOK menyusun modul ajar, rubrik penilaian, hingga ide aktivitas pembelajaran secara cepat, rapi, dan terstruktur.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="#contact" onclick="event.preventDefault();jump('contact')" class="px-5 py-2.5 rounded-full bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold tracking-wider transition">DAPATKAN AKSES ↗</a>
+            <button type="button" onclick="navigatePage('learning')" class="px-5 py-2.5 rounded-full border text-xs font-bold tracking-wider transition" style="border-color:var(--border-strong)">PELAJARI FITUR</button>
+          </div>
+        </div>
+        <div class="bento-glass rounded-3xl p-5 space-y-2.5 text-xs">
+          <div class="font-extrabold text-sky-400 tracking-wider uppercase">YANG ANDA DAPATKAN:</div>
+          <div class="flex items-center gap-2"><span>⚡</span> Generator &amp; Template Perangkat Ajar PJOK</div>
+          <div class="flex items-center gap-2"><span>📊</span> Rubrik Penilaian Praktik &amp; Sikap Siap Cetak</div>
+          <div class="flex items-center gap-2"><span>🎨</span> Bonus Template Presentasi Visual Kelas</div>
+          <div class="flex items-center gap-2"><span>🔄</span> Pembaruan Berkala Mengikuti Kurikulum</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <article class="tile-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-2xl">▣</span>
+            <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-sky-500/15 text-sky-400">POPULER</span>
+          </div>
+          <h3 class="text-base font-extrabold mb-1.5">Bundel Perangkat Ajar PJOK</h3>
+          <p class="text-xs sm:text-sm leading-relaxed mb-4" style="color:var(--text-sub)">Koleksi lengkap ATP, Modul Ajar, LKPD, dan instrumen asesmen siap edit sesuai kebutuhan sekolah.</p>
+        </div>
+        <a href="#contact" onclick="event.preventDefault();jump('contact')" class="inline-flex items-center justify-center py-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500 hover:text-white border border-sky-400/30 text-xs font-bold transition">Tanya / Pesan Produk ↗</a>
+      </article>
+
+      <article class="tile-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-2xl">▤</span>
+            <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-400">E-BOOK &amp; TEMPLATE</span>
+          </div>
+          <h3 class="text-base font-extrabold mb-1.5">Template Desain &amp; E-Book Edukasi</h3>
+          <p class="text-xs sm:text-sm leading-relaxed mb-4" style="color:var(--text-sub)">Template poster, slide presentasi interaktif, dan panduan praktis bagi guru serta kreator konten pendidikan.</p>
+        </div>
+        <a href="#contact" onclick="event.preventDefault();jump('contact')" class="inline-flex items-center justify-center py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500 hover:text-white border border-amber-400/30 text-xs font-bold transition">Lihat Katalog ↗</a>
+      </article>
+
+      <article class="tile-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-2xl">✦</span>
+            <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400">LAYANAN</span>
+          </div>
+          <h3 class="text-base font-extrabold mb-1.5">Kolaborasi &amp; Pelatihan Guru</h3>
+          <p class="text-xs sm:text-sm leading-relaxed mb-4" style="color:var(--text-sub)">Undang Ariansyah Imran untuk workshop desain grafis pendidikan, pemanfaatan AI, atau proyek digital sekolah.</p>
+        </div>
+        <a href="#contact" onclick="event.preventDefault();jump('contact')" class="inline-flex items-center justify-center py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 hover:text-white border border-emerald-400/30 text-xs font-bold transition">Diskusi Kolaborasi ↗</a>
+      </article>
+    </div>
+  </div>
+
+  <!-- CONTACT (GLOBAL FOOTER SECTION) -->
+  <section id="contact" class="pt-14 scroll-mt-24">
+    <div class="flex items-center gap-4 mb-5">
+      <h2 class="text-lg sm:text-xl font-extrabold tracking-[0.2em]">LET'S CONNECT</h2>
+      <div class="h-px flex-1 bg-gradient-to-r from-sky-400/40 to-transparent"></div>
+    </div>
+    <div class="tile-card rounded-3xl p-6 flex flex-col gap-5">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-base sm:text-lg font-bold mb-1">Terhubung dan berkolaborasi</h3>
+          <p class="text-xs sm:text-sm" style="color:var(--text-sub)">Untuk kolaborasi pendidikan PJOK, desain grafis, pelatihan guru, dan pengembangan karya digital bersama Ariansyah Imran (Ari Sensei).</p>
+        </div>
+        <a id="contactPrimaryBtn" href="https://instagram.com/arhykbs" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold tracking-wider transition whitespace-nowrap">
+          HUBUNGI ARI SENSEI ↗
+        </a>
+      </div>
+      <div id="footerSocialLinks" class="flex flex-wrap gap-2 pt-3 border-t" style="border-color:var(--border-soft)"></div>
+    </div>
+  </section>
+
+  <footer class="text-center pt-12 text-[11px] tracking-[0.2em]" style="color:var(--text-muted)">
+    © 2026 PAK ARI SENSEI · PERSONAL DIGITAL ECOSYSTEM
+  </footer>
+</div>
+
+<!-- MODAL DETAIL ARTIKEL / PORTOFOLIO -->
+<div id="detailModal" onclick="if(event.target===this)closeDetailModal()" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md p-4 overflow-y-auto flex items-center justify-center">
+  <div class="w-full max-w-2xl rounded-3xl border shadow-2xl p-6 my-8" style="background:var(--modal-bg);border-color:var(--border-strong)">
+    <div class="flex items-start justify-between gap-3 border-b pb-4 mb-4" style="border-color:var(--border-soft)">
+      <div>
+        <div id="detailCategory" class="text-[10px] font-extrabold tracking-[0.22em] uppercase text-sky-500 mb-1">KATEGORI</div>
+        <h3 id="detailTitle" class="text-xl font-extrabold leading-snug">Judul Konten</h3>
+      </div>
+      <button type="button" onclick="closeDetailModal()" class="w-9 h-9 rounded-full bg-sky-500/15 hover:bg-sky-500/25 flex items-center justify-center font-bold shrink-0">✕</button>
+    </div>
+    <div id="detailImageWrap" class="hidden mb-4">
+      <img id="detailImage" src="" alt="" class="w-full max-h-80 object-cover rounded-2xl">
+    </div>
+    <p id="detailSummary" class="text-xs sm:text-sm font-semibold mb-3" style="color:var(--text-main)"></p>
+    <div id="detailBody" class="text-xs sm:text-sm leading-relaxed whitespace-pre-line" style="color:var(--text-sub)"></div>
+  </div>
+</div>
+
+<!-- =========================================================
+     ADMIN CMS OVERLAY (FIREBASE AUTH + KHUSUS PEMILIK)
+     ========================================================= -->
+<div id="admin" class="hidden fixed inset-0 z-50 bg-gradient-to-br from-[#060e17] to-[#0f2233] text-white overflow-y-auto p-4 sm:p-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-sky-200/20 pb-4">
+      <div>
+        <div class="text-[10px] tracking-[0.25em] text-sky-300">PERSONAL DIGITAL ECOSYSTEM</div>
+        <h1 class="text-xl font-extrabold tracking-wider">ARI SENSEI CMS ONLINE</h1>
+      </div>
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="closeAdmin()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-sky-300/30 text-xs font-semibold">← WEBSITE</button>
+        <button type="button" id="signOutBtn" onclick="logout()" hidden class="px-4 py-2 rounded-xl bg-rose-900/60 hover:bg-rose-800 border border-rose-400/40 text-xs font-semibold">LOGOUT</button>
+      </div>
+    </div>
+
+    <div id="loginBox" class="max-w-md mx-auto mt-10 bg-[#0a1724] border border-sky-200/20 rounded-3xl p-6 shadow-2xl">
+      <h2 class="text-lg font-bold mb-1">Login Administrator</h2>
+      <p class="text-xs text-slate-400 mb-4">Masuk menggunakan akun Google / Email Firebase Anda untuk mengelola seluruh isi website, atau coba Mode Demo CMS.</p>
+      <div class="space-y-3">
+        <div>
+          <label class="block text-[11px] text-sky-200 mb-1">Email</label>
+          <input id="email" type="email" autocomplete="username" placeholder="admin@email.com" class="w-full px-3.5 py-2.5 rounded-xl bg-[#06111c] border border-sky-200/20 text-sm text-white outline-none focus:border-sky-400">
+        </div>
+        <div>
+          <label class="block text-[11px] text-sky-200 mb-1">Password</label>
+          <input id="password" type="password" autocomplete="current-password" placeholder="Password" class="w-full px-3.5 py-2.5 rounded-xl bg-[#06111c] border border-sky-200/20 text-sm text-white outline-none focus:border-sky-400">
+        </div>
+        <button type="button" onclick="login()" class="w-full py-2.5 rounded-xl bg-sky-300 hover:bg-sky-200 text-slate-950 font-extrabold text-xs tracking-wider transition">LOGIN EMAIL &amp; PASSWORD</button>
+        <button type="button" onclick="loginWithGoogle()" class="w-full py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-xs tracking-wider transition flex items-center justify-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          LOGIN DENGAN AKUN GOOGLE
+        </button>
+        <button type="button" id="demoCmsBtn" onclick="enterDemoCms()" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-sky-100 font-bold text-xs tracking-wider transition">COBA MODE DEMO CMS (OFFLINE PREVIEW)</button>
+      </div>
+      <p id="loginMessage" class="text-xs text-slate-400 mt-3 leading-relaxed">Akses online hanya untuk UID yang terdaftar di koleksi admins Firestore.</p>
+    </div>
+
+    <div id="dashboard" hidden class="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-5 mt-6">
+      <aside class="bg-[#0a1724] border border-sky-200/20 rounded-2xl p-4 h-max flex flex-wrap md:flex-col gap-2">
+        <button type="button" data-tab="overview" class="admin-tab active text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-sky-500/20 text-white" onclick="showTab('overview', this)">▦ Overview</button>
+        <button type="button" data-tab="photos" class="admin-tab text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-white/10" onclick="showTab('photos', this)">📷 Kelola Foto</button>
+        <button type="button" data-tab="profile" class="admin-tab text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-white/10" onclick="showTab('profile', this)">👤 Profil &amp; About</button>
+        <button type="button" data-tab="socials" class="admin-tab text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-white/10" onclick="showTab('socials', this)">🔗 Medsos &amp; Link</button>
+        <button type="button" data-tab="articles" class="admin-tab text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-white/10" onclick="showTab('articles', this)">▤ Artikel</button>
+        <button type="button" data-tab="portfolio" class="admin-tab text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-white/10" onclick="showTab('portfolio', this)">✧ Portofolio</button>
+      </aside>
+      <section id="adminPanel" class="bg-[#0a1724] border border-sky-200/20 rounded-2xl p-5"></section>
+    </div>
+  </div>
+</div>
+
+<!-- CUSTOM CONFIRM DIALOG -->
+<div id="confirmModal" class="hidden fixed inset-0 z-[120] bg-black/75 backdrop-blur-sm p-4 flex items-center justify-center">
+  <div class="w-full max-w-sm rounded-2xl bg-[#0d1c2b] text-white border border-sky-200/25 p-5 shadow-2xl">
+    <h3 class="text-base font-bold mb-2">Konfirmasi Hapus</h3>
+    <p id="confirmMessage" class="text-xs text-slate-300 leading-relaxed mb-5">Hapus konten ini secara permanen?</p>
+    <div class="flex justify-end gap-2">
+      <button type="button" id="confirmCancelBtn" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold">Batal</button>
+      <button type="button" id="confirmOkBtn" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold">Ya, Hapus</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full bg-sky-500 text-white text-xs font-extrabold shadow-2xl opacity-0 pointer-events-none transition-opacity duration-200 z-[200]"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getFirestore, collection, doc, getDoc, getDocs, addDoc, setDoc, updateDoc, deleteDoc, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+// ============================================================
+// 1. HELPER DOM & KONFIGURASI 6 FOTO STATIS (OPSIONAL)
+// ============================================================
+const $ = (id) => document.getElementById(id);
+
+const PHOTO_CONFIG = {
+  hero: "",        // Slot 1: Foto utama tengah (contoh: "assets/hero.png")
+  avatar: "",      // Slot 2: Foto profil bulat kiri atas
+  writerCard: "",  // Slot 3: Foto kartu PENULIS
+  gallery1: "",    // Slot 4: Foto galeri kanan atas
+  gallery2: "",    // Slot 5: Foto galeri kanan bawah
+  aboutPhoto: ""   // Slot 6: Foto profil halaman ABOUT
+};
+
+// ============================================================
+// 1B. DATA PROFIL, ABOUT, & MEDSOS (SEMUA BISA DIEDIT DI CMS)
+// ============================================================
+let siteSettings = {
+  fullName: "Pak Ari Sensei",
+  degreeName: "Ariansyah Imran, S.Pd., Gr.",
+  brandAlias: "Pak Ari Sensei",
+  handle: "@arhykbs",
+  subtitle: "Personal Digital Ecosystem",
+  roleLine: "S.Pd., Gr. · Pendidik PJOK · Digital Educator · Graphic Designer",
+  bioShort: "Guru PJOK, Content Creator, Graphic Designer, dan Digital Educator. Ruang untuk berbagi karya, pengetahuan, kreativitas, serta inovasi pendidikan.",
+  introBio: "Saya Ariansyah Imran, S.Pd., Gr. Seorang pendidik PJOK yang tertarik pada teknologi pendidikan, desain grafis, konten kreatif, dan pengembangan solusi digital untuk guru di Indonesia.",
+  aboutBio: "Dikenal juga sebagai Ari Sensei, saya adalah seorang pendidik Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK) yang berfokus pada integrasi teknologi pendidikan, desain komunikasi visual, serta pengembangan solusi digital praktis untuk membantu guru dan siswa belajar lebih bermakna.",
+  tagline: "BERBAGI ILMU · BERKARYA · MENGINSPIRASI",
+  heroTransform: { scale: 100, offsetY: 0 },
+  photos: { ...PHOTO_CONFIG },
+  socials: {
+    instagram: "https://instagram.com/arhykbs",
+    facebook: "https://facebook.com/arhykbs",
+    youtube: "https://youtube.com/@arisensei",
+    tiktok: "https://tiktok.com/@arhykbs",
+    lynkid: "https://lynk.id/arisensei",
+    whatsapp: "https://wa.me/6281234567890",
+    email: "mailto:arisensei.edu@gmail.com"
+  }
+};
+
+// ============================================================
+// 2. KONFIGURASI FIREBASE (Ganti sesuai README_SETUP.md)
+// ============================================================
+const firebaseConfig = {
+  apiKey: "GANTI_API_KEY",
+  authDomain: "GANTI_PROJECT_ID.firebaseapp.com",
+  projectId: "GANTI_PROJECT_ID",
+  storageBucket: "GANTI_PROJECT_ID.appspot.com",
+  messagingSenderId: "GANTI_MESSAGING_SENDER_ID",
+  appId: "GANTI_APP_ID"
+};
+
+const configured = !Object.values(firebaseConfig).some((v) => String(v).startsWith("GANTI_"));
+let auth = null, db = null, isAdmin = false, demoMode = false;
+if (configured) {
+  const app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+  // Sembunyikan tombol Mode Demo saat website sudah terhubung ke Firebase agar publik tidak bisa masuk CMS
+  if ($("demoCmsBtn")) $("demoCmsBtn").hidden = true;
+}
+
+// ============================================================
+// 3. TEMA GELAP / TERANG & NAVIGASI MULTI-HALAMAN
+// ============================================================
+function updateThemeButtonIcon(theme) {
+  const darkIcon = $("weatherIconDark");
+  const lightIcon = $("weatherIconLight");
+  if (darkIcon && lightIcon) {
+    darkIcon.classList.toggle("hidden", theme === "light");
+    lightIcon.classList.toggle("hidden", theme !== "light");
+  }
+}
+
+window.toggleTheme = () => {
+  const html = document.documentElement;
+  const next = html.getAttribute("data-theme") === "light" ? "dark" : "light";
+  html.setAttribute("data-theme", next);
+  updateThemeButtonIcon(next);
+  toast(next === "light" ? "Mode Terang Aktif" : "Mode Gelap Aktif");
+};
+
+window.toggleMobileNav = () => {
+  $("mobileNav")?.classList.toggle("hidden");
+};
+
+window.navigatePage = (pageName = "home") => {
+  const valid = ["home", "about", "writer", "design", "learning", "products"];
+  const target = valid.includes(pageName) ? pageName : "home";
+  document.querySelectorAll(".page-view").forEach((el) => el.classList.remove("active"));
+  const activeView = $("page-" + target);
+  if (activeView) activeView.classList.add("active");
+
+  document.querySelectorAll(".nav-item").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.page === target);
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+window.jump = (target) => {
+  if (target === "contact") {
+    $("contact")?.scrollIntoView({ behavior: "smooth" });
+    return;
+  }
+  window.navigatePage(target);
+};
+
+window.toggleControlBtn = (btn, activeClass) => {
+  if (!btn) return;
+  const isActive = btn.classList.contains(activeClass);
+  btn.classList.remove("bg-[#0a84ff]", "bg-[#34c759]", "bg-slate-900/80", "shadow-[0_0_16px_rgba(52,199,89,0.55)]", "shadow-[0_0_16px_rgba(10,132,255,0.55)]");
+  if (isActive) {
+    btn.classList.add("bg-slate-900/80");
+  } else {
+    btn.classList.add(activeClass);
+    if (activeClass.includes("34c759")) btn.classList.add("shadow-[0_0_16px_rgba(52,199,89,0.55)]");
+    else btn.classList.add("shadow-[0_0_16px_rgba(10,132,255,0.55)]");
+  }
+};
+
+// ============================================================
+// 4. ENGINE FOTO (KHUSUS DIAKSES DARI DALAM CMS ADMIN)
+// ============================================================
+let rawHeroImage = null;
+
+function setSlotImage(slotId, url, alt = "Foto", objectPos = "50% 15%") {
+  const slot = $(slotId);
+  if (!slot || !url) return;
+  if (slotId === "heroPortraitSlot") {
+    slot.innerHTML = `<img id="heroPortraitImg" src="${url}" alt="${escapeHtml(alt)}">`;
+    applyHeroTransform();
+  } else {
+    slot.innerHTML = `<img src="${url}" alt="${escapeHtml(alt)}" class="w-full h-full object-cover" style="object-position:${objectPos}">`;
+  }
+}
+
+function applyHeroTransform() {
+  const t = siteSettings.heroTransform || { scale: 100, offsetY: 0 };
+  const imgEl = $("heroPortraitImg");
+  if (imgEl) {
+    imgEl.style.transform = `translateY(${t.offsetY || 0}px) scale(${(t.scale || 100) / 100})`;
+    imgEl.style.transformOrigin = "bottom center";
+  }
+}
+
+function removeWhiteBgFromEdges(img, threshold = 230) {
+  const maxDim = 760;
+  const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+  const w = Math.max(1, Math.round(img.width * scale));
+  const h = Math.max(1, Math.round(img.height * scale));
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  ctx.drawImage(img, 0, 0, w, h);
+
+  const imgData = ctx.getImageData(0, 0, w, h);
+  const data = imgData.data;
+  const visited = new Uint8Array(w * h);
+  const queue = new Int32Array(w * h);
+  let head = 0, tail = 0;
+
+  const isBgPixel = (idx) => {
+    const r = data[idx], g = data[idx + 1], b = data[idx + 2], a = data[idx + 3];
+    if (a < 20) return true;
+    const minC = Math.min(r, g, b);
+    const maxC = Math.max(r, g, b);
+    return minC >= threshold && (maxC - minC) <= 32;
+  };
+
+  const enqueue = (x, y) => {
+    const p = y * w + x;
+    if (visited[p]) return;
+    if (isBgPixel(p * 4)) {
+      visited[p] = 1;
+      queue[tail++] = p;
+    }
+  };
+
+  for (let x = 0; x < w; x++) { enqueue(x, 0); enqueue(x, h - 1); }
+  for (let y = 0; y < h; y++) { enqueue(0, y); enqueue(w - 1, y); }
+
+  while (head < tail) {
+    const p = queue[head++];
+    data[p * 4 + 3] = 0;
+    const x = p % w;
+    const y = (p - x) / w;
+    if (x > 0) enqueue(x - 1, y);
+    if (x < w - 1) enqueue(x + 1, y);
+    if (y > 0) enqueue(x, y - 1);
+    if (y < h - 1) enqueue(x, y + 1);
+  }
+
+  ctx.putImageData(imgData, 0, 0);
+  return canvas.toDataURL("image/png");
+}
+
+function compressImageToDataUrl(img, maxDim = 480, quality = 0.82) {
+  const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+  const w = Math.max(1, Math.round(img.width * scale));
+  const h = Math.max(1, Math.round(img.height * scale));
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0, w, h);
+  return canvas.toDataURL("image/jpeg", quality);
+}
+
+// Terapkan PHOTO_CONFIG statis / dari Firestore
+function applyPhotosFromSettings(photosObj = siteSettings.photos) {
+  if (!photosObj) return;
+  if (photosObj.hero) setSlotImage("heroPortraitSlot", photosObj.hero, "Foto Utama");
+  if (photosObj.avatar) setSlotImage("avatarSlot", photosObj.avatar, "Avatar", "50% 12%");
+  if (photosObj.writerCard) setSlotImage("writerPhotoSlot", photosObj.writerCard, "Penulis", "50% 15%");
+  if (photosObj.gallery1) setSlotImage("gallerySlot1", photosObj.gallery1, "Galeri 1", "50% 15%");
+  if (photosObj.gallery2) setSlotImage("gallerySlot2", photosObj.gallery2, "Galeri 2", "50% 20%");
+  if (photosObj.aboutPhoto) setSlotImage("aboutPhotoSlot", photosObj.aboutPhoto, "Foto Profil About", "50% 15%");
+  applyHeroTransform();
+}
+applyPhotosFromSettings();
+
+// Render semua teks profil, about, dan link medsos aktif ke seluruh halaman
+function normalizeLink(url = "") {
+  const clean = String(url).trim();
+  if (!clean) return "";
+  if (/^(https?:\/\/|mailto:|tel:)/i.test(clean)) return clean;
+  return "https://" + clean;
+}
+
+function applySiteSettings() {
+  const s = siteSettings;
+  const displayName = (s.fullName || "PAK ARI SENSEI").trim().toUpperCase();
+
+  if ($("homeHeadline")) $("homeHeadline").textContent = displayName;
+  if ($("homeSubtitle")) $("homeSubtitle").textContent = s.subtitle || "";
+  if ($("homeBioShort")) $("homeBioShort").textContent = s.bioShort || "";
+  if ($("homeIntroBio")) $("homeIntroBio").textContent = s.introBio || "";
+  if ($("homeBadgeName")) $("homeBadgeName").textContent = s.brandAlias || "Pak Ari Sensei";
+  if ($("homeTagline")) $("homeTagline").textContent = s.tagline || "";
+
+  if ($("aboutHeadline")) $("aboutHeadline").textContent = (s.fullName || "").toUpperCase();
+  if ($("aboutRoleLine")) $("aboutRoleLine").textContent = s.roleLine || "";
+  if ($("aboutBioFull")) $("aboutBioFull").textContent = s.aboutBio || "";
+  if ($("aboutCardName")) $("aboutCardName").textContent = s.degreeName || s.fullName || "";
+  if ($("aboutCardAlias")) $("aboutCardAlias").textContent = `${s.handle || "@arhykbs"} · ${s.brandAlias || "Ari Sensei"}`;
+
+  const soc = s.socials || {};
+  const igUrl = normalizeLink(soc.instagram);
+  const fbUrl = normalizeLink(soc.facebook);
+  if ($("homeIgLink") && igUrl) $("homeIgLink").href = igUrl;
+  if ($("homeFbLink") && fbUrl) $("homeFbLink").href = fbUrl;
+
+  const primaryContact = normalizeLink(soc.whatsapp || soc.instagram || soc.lynkid || soc.email);
+  if ($("contactPrimaryBtn") && primaryContact) $("contactPrimaryBtn").href = primaryContact;
+
+  const socialItems = [
+    { key: "instagram", label: "Instagram", desc: s.handle || "Ikuti konten harian", icon: "◎", badge: "IG", color: "text-pink-400" },
+    { key: "facebook", label: "Facebook", desc: "Komunitas & update", icon: "f", badge: "FB", color: "text-blue-400" },
+    { key: "youtube", label: "YouTube", desc: "Video edukasi & PJOK", icon: "▶", badge: "YT", color: "text-rose-400" },
+    { key: "tiktok", label: "TikTok", desc: "Konten singkat kreatif", icon: "♪", badge: "TT", color: "text-cyan-400" },
+    { key: "lynkid", label: "Lynk.id / Produk", desc: "Katalog karya digital", icon: "↗", badge: "LINK", color: "text-emerald-400" },
+    { key: "whatsapp", label: "WhatsApp", desc: "Diskusi & kolaborasi", icon: "✆", badge: "WA", color: "text-green-400" },
+    { key: "email", label: "Email Resmi", desc: "Undangan & kerja sama", icon: "✉", badge: "MAIL", color: "text-amber-400" }
+  ].filter((item) => normalizeLink(soc[item.key]));
+
+  if ($("aboutSocialGrid")) {
+    $("aboutSocialGrid").innerHTML = socialItems.map((item) => {
+      const href = normalizeLink(soc[item.key]);
+      const isMail = href.startsWith("mailto:");
+      return `
+        <a href="${escapeHtml(href)}" ${isMail ? "" : 'target="_blank" rel="noopener noreferrer"'} class="bento-glass rounded-2xl p-3.5 flex items-center gap-3 hover:border-sky-400 transition group">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/15 border border-sky-400/25 flex items-center justify-center font-extrabold ${item.color} shrink-0 group-hover:scale-105 transition">${item.icon}</div>
+          <div class="min-w-0 flex-1">
+            <div class="text-xs font-extrabold truncate group-hover:text-sky-400 transition">${item.label}</div>
+            <div class="text-[10px] truncate" style="color:var(--text-muted)">${escapeHtml(item.desc)}</div>
+          </div>
+          <span class="text-xs opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition">↗</span>
+        </a>`;
+    }).join("");
+  }
+
+  if ($("footerSocialLinks")) {
+    $("footerSocialLinks").innerHTML = socialItems.map((item) => {
+      const href = normalizeLink(soc[item.key]);
+      const isMail = href.startsWith("mailto:");
+      return `<a href="${escapeHtml(href)}" ${isMail ? "" : 'target="_blank" rel="noopener noreferrer"'} class="px-3.5 py-1.5 rounded-full text-[11px] font-bold border hover:bg-sky-500 hover:text-white hover:border-sky-500 transition" style="border-color:var(--border-strong)">${item.icon} ${item.label} ↗</a>`;
+    }).join("");
+  }
+
+  applyPhotosFromSettings(s.photos);
+}
+
+const demoStore = {
+  articles: [
+    {
+      id: "demo-a1",
+      title: "Strategi Pembelajaran Mendalam (Deep Learning) di Kelas PJOK",
+      category: "Pendidikan PJOK",
+      summary: "Panduan praktis menerapkan pembelajaran aktif yang bermakna dan menggembirakan di lapangan olahraga.",
+      imageUrl: "",
+      body: "Pembelajaran PJOK modern memadukan gerak fisik, refleksi, dan kolaborasi siswa.",
+      published: true
+    },
+    {
+      id: "demo-a2",
+      title: "Memanfaatkan AI untuk Menyusun Modul Ajar Kurikulum Merdeka",
+      category: "Teknologi Guru",
+      summary: "Tips prompting efektif bagi pendidik agar administrasi pembelajaran lebih cepat dan terstruktur.",
+      imageUrl: "",
+      body: "Alur kerja digital membantu guru fokus pada pendampingan siswa.",
+      published: true
+    },
+    {
+      id: "demo-a3",
+      title: "Desain Media Presentasi Interaktif untuk Guru Masa Kini",
+      category: "Desain Grafis",
+      summary: "Prinsip tipografi, kontras warna, dan layout visual agar materi ajar mudah dipahami peserta didik.",
+      imageUrl: "",
+      body: "Visual yang rapi membantu meningkatkan fokus siswa.",
+      published: true
+    }
+  ],
+  portfolio: [
+    {
+      id: "demo-p1",
+      title: "Poster & Feed Edukasi PJOK",
+      category: "Graphic Design",
+      summary: "Seri desain infografis teknik dasar olahraga dan kebugaran jasmani untuk media sosial.",
+      imageUrl: "",
+      body: "Koleksi karya visual edukatif untuk komunitas guru dan siswa.",
+      published: true
+    },
+    {
+      id: "demo-p2",
+      title: "Asisten Digital Perangkat Ajar PJOK",
+      category: "Web & EduTech",
+      summary: "Aplikasi web bantu guru menyusun ATP, modul ajar, serta rubrik penilaian praktik olahraga.",
+      imageUrl: "",
+      body: "Ringan diakses lewat HP maupun laptop.",
+      published: true
+    },
+    {
+      id: "demo-p3",
+      title: "Brand Identity & Thumbnail Konten Edukasi",
+      category: "Content Creation",
+      summary: "Konsep visual modern bertema dark-glass untuk kanal pembelajaran dan produk digital.",
+      imageUrl: "",
+      body: "Konsistensi branding meningkatkan kepercayaan audiens digital.",
+      published: true
+    }
+  ]
+};
+
+function toast(msg) {
+  const el = $("toast");
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.remove("opacity-0");
+  el.classList.add("opacity-100");
+  clearTimeout(el._timer);
+  el._timer = setTimeout(() => {
+    el.classList.remove("opacity-100");
+    el.classList.add("opacity-0");
+  }, 2400);
+}
+
+function askConfirm(message = "Apakah Anda yakin?") {
+  return new Promise((resolve) => {
+    const modal = $("confirmModal");
+    const msgEl = $("confirmMessage");
+    const okBtn = $("confirmOkBtn");
+    const cancelBtn = $("confirmCancelBtn");
+    if (!modal || !okBtn || !cancelBtn) {
+      resolve(true);
+      return;
+    }
+    if (msgEl) msgEl.textContent = message;
+    modal.classList.remove("hidden");
+
+    const cleanup = (result) => {
+      modal.classList.add("hidden");
+      okBtn.onclick = null;
+      cancelBtn.onclick = null;
+      resolve(result);
+    };
+    okBtn.onclick = () => cleanup(true);
+    cancelBtn.onclick = () => cleanup(false);
+  });
+}
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeDetailModal();
+  }
+});
+
+async function loadCollection(kind, publishedOnly = false) {
+  if (!configured || demoMode) {
+    const list = demoStore[kind] || [];
+    return publishedOnly ? list.filter((x) => x.published) : list;
+  }
+  const qy = publishedOnly
+    ? query(collection(db, kind), where("published", "==", true))
+    : collection(db, kind);
+  const snap = await getDocs(qy);
+  const rows = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  return rows.sort((a, b) => {
+    const ta = a.updatedAt?.seconds || 0;
+    const tb = b.updatedAt?.seconds || 0;
+    return tb - ta;
+  });
+}
+let pendingAdminTab = "overview";
+window.openAdmin = (initialTab = "overview") => {
+  pendingAdminTab = initialTab;
+  $("admin").classList.remove("hidden");
+  if (isAdmin) {
+    const btn = document.querySelector(`.admin-tab[data-tab="${initialTab}"]`);
+    showTab(initialTab, btn);
+  } else if (!configured) {
+    $("loginMessage").textContent = "Firebase belum dikonfigurasi. Klik 'COBA MODE DEMO CMS' untuk langsung mengedit profil, link medsos, artikel, & portofolio.";
+  }
+};
+window.closeAdmin = () => $("admin").classList.add("hidden");
+
+window.enterDemoCms = () => {
+  if (configured) {
+    toast("Website sudah mode online. Silakan login dengan akun admin Anda.");
+    return;
+  }
+  demoMode = true;
+  isAdmin = true;
+  $("loginBox").hidden = true;
+  $("dashboard").hidden = false;
+  $("signOutBtn").hidden = false;
+  const btn = document.querySelector(`.admin-tab[data-tab="${pendingAdminTab}"]`);
+  showTab(pendingAdminTab, btn);
+  toast("Masuk ke Mode Demo CMS");
+};
+
+window.login = async () => {
+  if (!configured) {
+    $("loginMessage").textContent = "Isi firebaseConfig di index.html atau gunakan Mode Demo CMS.";
+    return;
+  }
+  try {
+    await signInWithEmailAndPassword(auth, $("email").value.trim(), $("password").value);
+    $("loginMessage").textContent = "Memeriksa akses administrator...";
+  } catch (e) {
+    $("loginMessage").textContent = authError(e.code);
+  }
+};
+
+window.loginWithGoogle = async () => {
+  if (!configured) {
+    $("loginMessage").textContent = "Untuk login dengan akun Google Anda secara online, pasang firebaseConfig & aktifkan Google Sign-In di Firebase Console. Sementara ini silakan klik 'COBA MODE DEMO CMS'.";
+    return;
+  }
+  try {
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
+    $("loginMessage").textContent = "Memeriksa hak administrator akun Google Anda...";
+  } catch (e) {
+    $("loginMessage").textContent = authError(e.code);
+  }
+};
+
+window.logout = async () => {
+  if (demoMode) {
+    demoMode = false;
+    isAdmin = false;
+    $("loginBox").hidden = false;
+    $("dashboard").hidden = true;
+    $("signOutBtn").hidden = true;
+    toast("Keluar dari Mode Demo CMS");
+    return;
+  }
+  if (auth) await signOut(auth);
+};
+
+function authError(code) {
+  return ({
+    "auth/invalid-credential": "Email atau password salah.",
+    "auth/too-many-requests": "Terlalu banyak percobaan. Coba lagi nanti.",
+    "auth/network-request-failed": "Koneksi internet bermasalah."
+  })[code] || "Login gagal: " + code;
+}
+
+if (configured) {
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      isAdmin = false;
+      $("loginBox").hidden = false;
+      $("dashboard").hidden = true;
+      $("signOutBtn").hidden = true;
+      return;
+    }
+    try {
+      const snap = await getDoc(doc(db, "admins", user.uid));
+      isAdmin = snap.exists() && snap.data().active !== false;
+      if (!isAdmin) {
+        $("loginMessage").textContent = "Akun berhasil login, tetapi UID ini belum diberi hak admin.";
+        await signOut(auth);
+        return;
+      }
+      $("loginBox").hidden = true;
+      $("dashboard").hidden = false;
+      $("signOutBtn").hidden = false;
+      const btn = document.querySelector(`.admin-tab[data-tab="${pendingAdminTab}"]`);
+      showTab(pendingAdminTab, btn);
+    } catch (e) {
+      $("loginMessage").textContent = "Gagal memeriksa hak admin: " + e.message;
+    }
+  });
+}
+
+window.showTab = (name, btn) => {
+  document.querySelectorAll(".admin-tab").forEach((x) => {
+    x.classList.remove("bg-sky-500/20", "text-white");
+    x.classList.add("text-slate-300");
+  });
+  if (btn) {
+    btn.classList.add("bg-sky-500/20", "text-white");
+    btn.classList.remove("text-slate-300");
+  }
+  if (name === "overview") overview();
+  else if (name === "photos") photosManager();
+  else if (name === "profile") profileManager();
+  else if (name === "socials") socialsManager();
+  else manager(name);
+};
+
+function photosManager() {
+  if (!isAdmin) return;
+  const p = siteSettings.photos || {};
+  const t = siteSettings.heroTransform || { scale: 100, offsetY: 0 };
+
+  $("adminPanel").innerHTML = `
+    <h2 class="text-lg font-bold mb-1">Kelola 6 Slot Foto Website (Khusus Admin)</h2>
+    <p class="text-xs text-slate-400 mb-4">Pengunjung biasa tidak dapat mengganti foto. Anda bisa mengunggah file langsung dari perangkat (otomatis dikompres) atau menempelkan URL gambar untuk setiap slot.</p>
+
+    <div class="space-y-4">
+      <!-- SLOT 1: HERO UTAMA -->
+      <div class="p-4 rounded-2xl bg-[#06111c] border border-sky-400/25">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <label class="text-xs font-extrabold text-sky-300">SLOT 1 · Foto Utama Tengah (Hero)</label>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-semibold">Auto Hapus Background Putih</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+          <div>
+            <label class="block text-[10px] text-slate-400 mb-1">Unggah dari Perangkat</label>
+            <input id="cmsFile-hero" type="file" accept="image/*" class="block w-full text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[11px] file:font-bold file:bg-sky-500 file:text-white cursor-pointer">
+          </div>
+          <div>
+            <label class="block text-[10px] text-slate-400 mb-1">Atau URL / Path Foto</label>
+            <input id="cmsUrl-hero" value="${escapeHtml(p.hero && !p.hero.startsWith("data:") ? p.hero : "")}" placeholder="https://... atau assets/hero.png" class="w-full px-3 py-2 rounded-xl bg-[#0b1b2b] border border-sky-200/20 text-xs text-white">
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-sky-200/15">
+          <div>
+            <label class="flex items-center gap-2 text-xs font-semibold cursor-pointer mb-1.5">
+              <input id="cmsAutoRemoveBg" type="checkbox" checked class="accent-sky-500 w-4 h-4">
+              <span>Hapus Background Putih Otomatis</span>
+            </label>
+            <div class="flex justify-between text-[10px] text-slate-400">
+              <span>Sensitivitas Hapus Putih</span>
+              <span id="cmsThresholdVal">230</span>
+            </div>
+            <input id="cmsBgThreshold" type="range" min="185" max="252" value="230" class="w-full accent-sky-500">
+          </div>
+          <div class="space-y-1.5">
+            <div class="flex justify-between text-[10px] text-slate-400">
+              <span>Skala / Ukuran Foto</span>
+              <span id="cmsHeroScaleVal">${t.scale}%</span>
+            </div>
+            <input id="cmsHeroScale" type="range" min="70" max="145" value="${t.scale}" class="w-full accent-sky-500">
+            <div class="flex justify-between text-[10px] text-slate-400">
+              <span>Geser Atas / Bawah</span>
+              <span id="cmsHeroOffsetVal">${t.offsetY}px</span>
+            </div>
+            <input id="cmsHeroOffsetY" type="range" min="-120" max="120" value="${t.offsetY}" class="w-full accent-sky-500">
+          </div>
+        </div>
+      </div>
+
+      <!-- SLOT 2 - 6 -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        ${[
+          { key: "avatar", title: "SLOT 2 · Foto Profil Bulat (Kiri Atas)" },
+          { key: "writerCard", title: "SLOT 3 · Foto Kartu PENULIS" },
+          { key: "gallery1", title: "SLOT 4 · Foto Galeri Kanan Atas" },
+          { key: "gallery2", title: "SLOT 5 · Foto Galeri Kanan Bawah" },
+          { key: "aboutPhoto", title: "SLOT 6 · Foto Profil Halaman ABOUT" }
+        ].map((slot) => `
+          <div class="p-3.5 rounded-2xl bg-[#06111c] border border-sky-200/15 space-y-2 ${slot.key === "aboutPhoto" ? "sm:col-span-2" : ""}">
+            <label class="block text-xs font-bold text-sky-300">${slot.title}</label>
+            <input id="cmsFile-${slot.key}" type="file" accept="image/*" class="block w-full text-[11px] file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:bg-slate-600 file:text-white cursor-pointer">
+            <input id="cmsUrl-${slot.key}" value="${escapeHtml(p[slot.key] && !p[slot.key].startsWith("data:") ? p[slot.key] : "")}" placeholder="Atau tempel URL foto (https://...)" class="w-full px-3 py-1.5 rounded-lg bg-[#0b1b2b] border border-sky-200/15 text-[11px] text-white">
+          </div>`).join("")}
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+        <p class="text-[11px] text-slate-400">Tip: Untuk situs online dengan banyak foto resolusi tinggi, gunakan URL gambar atau simpan ke folder <code>assets/</code>.</p>
+        <button type="button" id="saveAllPhotosBtn" class="px-5 py-2.5 rounded-xl bg-sky-300 hover:bg-sky-200 text-slate-950 text-xs font-extrabold">Simpan Semua Foto</button>
+      </div>
+    </div>`;
+
+  const draftPhotos = { ...(siteSettings.photos || {}) };
+  const draftTransform = { ...t };
+
+  const processCmsHero = () => {
+    const threshold = Number($("cmsBgThreshold").value);
+    $("cmsThresholdVal").textContent = threshold;
+    if (!rawHeroImage) return;
+    const resultUrl = $("cmsAutoRemoveBg").checked
+      ? removeWhiteBgFromEdges(rawHeroImage, threshold)
+      : compressImageToDataUrl(rawHeroImage, 760, 0.85);
+    draftPhotos.hero = resultUrl;
+    setSlotImage("heroPortraitSlot", resultUrl, "Foto Utama Ari Sensei");
+  };
+
+  $("cmsFile-hero").onchange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const img = new Image();
+    img.onload = () => {
+      rawHeroImage = img;
+      processCmsHero();
+      toast("Slot 1 siap! Klik 'Simpan Semua Foto' untuk menyimpan.");
+    };
+    img.src = URL.createObjectURL(file);
+  };
+
+  $("cmsAutoRemoveBg").onchange = processCmsHero;
+  $("cmsBgThreshold").oninput = processCmsHero;
+
+  $("cmsHeroScale").oninput = () => {
+    draftTransform.scale = Number($("cmsHeroScale").value);
+    $("cmsHeroScaleVal").textContent = draftTransform.scale + "%";
+    siteSettings.heroTransform = { ...draftTransform };
+    applyHeroTransform();
+  };
+  $("cmsHeroOffsetY").oninput = () => {
+    draftTransform.offsetY = Number($("cmsHeroOffsetY").value);
+    $("cmsHeroOffsetVal").textContent = draftTransform.offsetY + "px";
+    siteSettings.heroTransform = { ...draftTransform };
+    applyHeroTransform();
+  };
+
+  const slotMap = [
+    ["avatar", "avatarSlot", "50% 12%"],
+    ["writerCard", "writerPhotoSlot", "50% 15%"],
+    ["gallery1", "gallerySlot1", "50% 15%"],
+    ["gallery2", "gallerySlot2", "50% 20%"],
+    ["aboutPhoto", "aboutPhotoSlot", "50% 15%"]
+  ];
+
+  slotMap.forEach(([key, slotId, pos]) => {
+    $("cmsFile-" + key).onchange = (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const img = new Image();
+      img.onload = () => {
+        const dataUrl = compressImageToDataUrl(img, 500, 0.82);
+        draftPhotos[key] = dataUrl;
+        setSlotImage(slotId, dataUrl, key, pos);
+        toast("Foto berhasil dimuat! Klik 'Simpan Semua Foto'.");
+      };
+      img.src = URL.createObjectURL(file);
+    };
+  });
+
+  $("saveAllPhotosBtn").onclick = async () => {
+    ["hero", "avatar", "writerCard", "gallery1", "gallery2", "aboutPhoto"].forEach((key) => {
+      const urlVal = $("cmsUrl-" + key).value.trim();
+      if (urlVal) draftPhotos[key] = urlVal;
+    });
+
+    try {
+      await persistSiteSettings({
+        ...siteSettings,
+        heroTransform: draftTransform,
+        photos: draftPhotos
+      });
+      toast("Semua foto berhasil disimpan!");
+    } catch (err) {
+      toast("Gagal menyimpan ke Firestore (ukuran file mungkin > 1MB, gunakan URL gambar): " + err.message);
+    }
+  };
+}
+
+async function persistSiteSettings(newSettings) {
+  siteSettings = newSettings;
+  applySiteSettings();
+  if (configured && !demoMode) {
+    await setDoc(doc(db, "settings", "site"), { ...newSettings, updatedAt: serverTimestamp() }, { merge: true });
+  }
+}
+
+function profileManager() {
+  if (!isAdmin) return;
+  const s = siteSettings;
+  $("adminPanel").innerHTML = `
+    <h2 class="text-lg font-bold mb-1">Edit Profil, Halaman Home &amp; About</h2>
+    <p class="text-xs text-slate-400 mb-4">Perubahan di sini langsung memperbarui halaman Home dan About Anda. Untuk mengganti foto, gunakan menu <strong>📷 Kelola Foto</strong>.</p>
+    <form id="profileForm" class="space-y-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div><label class="block text-[11px] text-sky-200 mb-1">Nama Lengkap / Judul Utama</label><input id="pf_fullName" value="${escapeHtml(s.fullName)}" required class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+        <div><label class="block text-[11px] text-sky-200 mb-1">Nama dengan Gelar (About)</label><input id="pf_degreeName" value="${escapeHtml(s.degreeName)}" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+        <div><label class="block text-[11px] text-sky-200 mb-1">Nama Panggilan / Brand</label><input id="pf_brandAlias" value="${escapeHtml(s.brandAlias)}" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+        <div><label class="block text-[11px] text-sky-200 mb-1">Username / Handle</label><input id="pf_handle" value="${escapeHtml(s.handle)}" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+      </div>
+      <div><label class="block text-[11px] text-sky-200 mb-1">Subtitle Home</label><input id="pf_subtitle" value="${escapeHtml(s.subtitle)}" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+      <div><label class="block text-[11px] text-sky-200 mb-1">Baris Profesi (Halaman About)</label><input id="pf_roleLine" value="${escapeHtml(s.roleLine)}" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+      <div><label class="block text-[11px] text-sky-200 mb-1">Bio Singkat (Atas Home)</label><textarea id="pf_bioShort" rows="2" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white">${escapeHtml(s.bioShort)}</textarea></div>
+      <div><label class="block text-[11px] text-sky-200 mb-1">Teks Introduce Myself (Bawah Home)</label><textarea id="pf_introBio" rows="2" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white">${escapeHtml(s.introBio)}</textarea></div>
+      <div><label class="block text-[11px] text-sky-200 mb-1">Bio Lengkap (Halaman About)</label><textarea id="pf_aboutBio" rows="3" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white">${escapeHtml(s.aboutBio)}</textarea></div>
+      <div><label class="block text-[11px] text-sky-200 mb-1">Tagline Bawah Home</label><input id="pf_tagline" value="${escapeHtml(s.tagline)}" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+
+      <button type="submit" class="px-5 py-2.5 rounded-xl bg-sky-300 hover:bg-sky-200 text-slate-950 text-xs font-extrabold">Simpan Perubahan Profil</button>
+    </form>`;
+
+  $("profileForm").onsubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await persistSiteSettings({
+        ...siteSettings,
+        fullName: $("pf_fullName").value.trim(),
+        degreeName: $("pf_degreeName").value.trim(),
+        brandAlias: $("pf_brandAlias").value.trim(),
+        handle: $("pf_handle").value.trim(),
+        subtitle: $("pf_subtitle").value.trim(),
+        roleLine: $("pf_roleLine").value.trim(),
+        bioShort: $("pf_bioShort").value.trim(),
+        introBio: $("pf_introBio").value.trim(),
+        aboutBio: $("pf_aboutBio").value.trim(),
+        tagline: $("pf_tagline").value.trim()
+      });
+      toast("Profil & About berhasil disimpan!");
+    } catch (err) {
+      toast("Gagal menyimpan profil: " + err.message);
+    }
+  };
+}
+
+function socialsManager() {
+  if (!isAdmin) return;
+  const soc = siteSettings.socials || {};
+  $("adminPanel").innerHTML = `
+    <h2 class="text-lg font-bold mb-1">Kelola Media Sosial &amp; Tautan</h2>
+    <p class="text-xs text-slate-400 mb-4">Semua link yang diisi di sini otomatis aktif di halaman Home, About, dan bagian Contact. Kosongkan jika ingin disembunyikan.</p>
+    <form id="socialsForm" class="space-y-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div><label class="block text-[11px] text-sky-200 mb-1">Instagram URL</label><input id="sc_instagram" value="${escapeHtml(soc.instagram || "")}" placeholder="https://instagram.com/username" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+        <div><label class="block text-[11px] text-sky-200 mb-1">Facebook URL</label><input id="sc_facebook" value="${escapeHtml(soc.facebook || "")}" placeholder="https://facebook.com/username" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+        <div><label class="block text-[11px] text-sky-200 mb-1">YouTube URL</label><input id="sc_youtube" value="${escapeHtml(soc.youtube || "")}" placeholder="https://youtube.com/@channel" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+        <div><label class="block text-[11px] text-sky-200 mb-1">TikTok URL</label><input id="sc_tiktok" value="${escapeHtml(soc.tiktok || "")}" placeholder="https://tiktok.com/@username" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+        <div><label class="block text-[11px] text-sky-200 mb-1">Lynk.id / Katalog Produk URL</label><input id="sc_lynkid" value="${escapeHtml(soc.lynkid || "")}" placeholder="https://lynk.id/arisensei" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+        <div><label class="block text-[11px] text-sky-200 mb-1">WhatsApp Link (wa.me)</label><input id="sc_whatsapp" value="${escapeHtml(soc.whatsapp || "")}" placeholder="https://wa.me/628..." class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+        <div class="sm:col-span-2"><label class="block text-[11px] text-sky-200 mb-1">Email (awali dengan mailto:)</label><input id="sc_email" value="${escapeHtml(soc.email || "")}" placeholder="mailto:email@gmail.com" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+      </div>
+      <button type="submit" class="px-5 py-2.5 rounded-xl bg-sky-300 hover:bg-sky-200 text-slate-950 text-xs font-extrabold">Simpan Semua Tautan</button>
+    </form>`;
+
+  $("socialsForm").onsubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await persistSiteSettings({
+        ...siteSettings,
+        socials: {
+          instagram: $("sc_instagram").value.trim(),
+          facebook: $("sc_facebook").value.trim(),
+          youtube: $("sc_youtube").value.trim(),
+          tiktok: $("sc_tiktok").value.trim(),
+          lynkid: $("sc_lynkid").value.trim(),
+          whatsapp: $("sc_whatsapp").value.trim(),
+          email: $("sc_email").value.trim()
+        }
+      });
+      toast("Semua tautan medsos berhasil diperbarui!");
+    } catch (err) {
+      toast("Gagal menyimpan tautan: " + err.message);
+    }
+  };
+}
+
+async function overview() {
+  if (!isAdmin) return;
+  const [a, p] = await Promise.all([loadCollection("articles"), loadCollection("portfolio")]);
+  $("adminPanel").innerHTML = `
+    <h2 class="text-lg font-bold mb-4">Dashboard Overview</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+      <div class="bg-[#0f2334] border border-sky-200/15 rounded-2xl p-4"><small class="text-slate-400">Total Artikel</small><strong class="block text-2xl mt-1">${a.length}</strong></div>
+      <div class="bg-[#0f2334] border border-sky-200/15 rounded-2xl p-4"><small class="text-slate-400">Total Karya</small><strong class="block text-2xl mt-1">${p.length}</strong></div>
+      <div class="bg-[#0f2334] border border-sky-200/15 rounded-2xl p-4"><small class="text-slate-400">Mode CMS</small><strong class="block text-base mt-2 text-emerald-400">${demoMode ? "DEMO LOKAL" : "FIREBASE ONLINE"}</strong></div>
+    </div>
+    <div class="bg-[#0f2334] border border-sky-200/15 rounded-2xl p-4">
+      <h3 class="font-bold text-sm mb-1">Selamat datang di CMS ARI SENSEI</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">Kelola artikel dan portofolio Anda dari menu di samping. Konten berstatus Publikasi akan langsung tampil di halaman utama.</p>
+    </div>`;
+}
+
+async function manager(kind) {
+  if (!isAdmin) return;
+  const label = kind === "articles" ? "Artikel" : "Portofolio";
+  const arr = await loadCollection(kind);
+  $("adminPanel").innerHTML = `
+    <h2 class="text-lg font-bold mb-4">Kelola ${label}</h2>
+    <form id="contentForm" class="space-y-3 mb-6">
+      <input type="hidden" id="editId">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div><label class="block text-[11px] text-sky-200 mb-1">Judul</label><input id="title" required maxlength="140" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+        <div><label class="block text-[11px] text-sky-200 mb-1">Kategori</label><input id="category" maxlength="60" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+      </div>
+      <div><label class="block text-[11px] text-sky-200 mb-1">Ringkasan</label><textarea id="summary" maxlength="500" rows="2" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></textarea></div>
+      <div><label class="block text-[11px] text-sky-200 mb-1">URL Gambar (opsional)</label><input id="imageUrl" type="url" placeholder="https://..." class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></div>
+      <div><label class="block text-[11px] text-sky-200 mb-1">Isi Lengkap / Deskripsi</label><textarea id="body" rows="3" class="w-full px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white"></textarea></div>
+      <div class="flex flex-wrap items-center gap-3">
+        <select id="published" class="px-3 py-2 rounded-xl bg-[#06111c] border border-sky-200/20 text-xs text-white">
+          <option value="true">Publikasikan</option>
+          <option value="false">Simpan sebagai draft</option>
+        </select>
+        <button type="submit" class="px-4 py-2 rounded-xl bg-sky-300 hover:bg-sky-200 text-slate-950 text-xs font-extrabold">Simpan Konten</button>
+        <button type="button" onclick="resetForm()" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold">Kosongkan</button>
+      </div>
+    </form>
+    <div id="contentList" class="space-y-2.5"></div>`;
+
+  $("contentForm").onsubmit = async (e) => {
+    e.preventDefault();
+    const id = $("editId").value;
+    const data = {
+      title: $("title").value.trim(),
+      category: $("category").value.trim(),
+      summary: $("summary").value.trim(),
+      imageUrl: $("imageUrl").value.trim(),
+      body: $("body").value.trim(),
+      published: $("published").value === "true"
+    };
+
+    try {
+      if (demoMode || !configured) {
+        if (id) {
+          const idx = demoStore[kind].findIndex((x) => x.id === id);
+          if (idx > -1) demoStore[kind][idx] = { id, ...data };
+        } else {
+          demoStore[kind].unshift({ id: "demo-" + Date.now(), ...data });
+        }
+        toast("Konten disimpan (Mode Demo)");
+      } else {
+        data.updatedAt = serverTimestamp();
+        if (id) await updateDoc(doc(db, kind, id), data);
+        else {
+          data.createdAt = serverTimestamp();
+          await addDoc(collection(db, kind), data);
+        }
+        toast("Konten berhasil disimpan ke Firestore");
+      }
+      await renderPublic();
+      manager(kind);
+    } catch (err) {
+      toast("Gagal menyimpan: " + err.message);
+    }
+  };
+  drawItems(kind, arr);
+}
+
+function drawItems(kind, arr) {
+  $("contentList").innerHTML = arr.length
+    ? arr.map((x) => `
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#0f2334] border border-sky-200/15 p-3 rounded-xl">
+        <div>
+          <strong class="text-xs sm:text-sm">${escapeHtml(x.title)}</strong>
+          <small class="block text-[11px] text-slate-400 mt-0.5">${escapeHtml(x.category || "Tanpa kategori")} · ${x.published ? "Publikasi" : "Draft"}</small>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" data-edit="${x.id}" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-[11px] font-semibold">Edit</button>
+          <button type="button" data-delete="${x.id}" class="px-3 py-1.5 rounded-lg bg-rose-900/70 hover:bg-rose-700 text-[11px] font-semibold">Hapus</button>
+        </div>
+      </div>`).join("")
+    : '<p class="text-xs text-slate-400">Belum ada konten.</p>';
+
+  $("contentList").querySelectorAll("[data-edit]").forEach((b) => (b.onclick = () => editItem(kind, b.dataset.edit)));
+  $("contentList").querySelectorAll("[data-delete]").forEach((b) => (b.onclick = () => removeItem(kind, b.dataset.delete)));
+}
+
+async function editItem(kind, id) {
+  let x = null;
+  if (demoMode || !configured) {
+    x = demoStore[kind].find((item) => item.id === id);
+  } else {
+    const s = await getDoc(doc(db, kind, id));
+    if (s.exists()) x = s.data();
+  }
+  if (!x) return;
+  $("editId").value = id;
+  $("title").value = x.title || "";
+  $("category").value = x.category || "";
+  $("summary").value = x.summary || "";
+  $("imageUrl").value = x.imageUrl || "";
+  $("body").value = x.body || "";
+  $("published").value = String(x.published === true);
+  $("title").focus();
+}
+
+async function removeItem(kind, id) {
+  const ok = await askConfirm("Hapus konten ini secara permanen?");
+  if (!ok) return;
+  try {
+    if (demoMode || !configured) {
+      demoStore[kind] = demoStore[kind].filter((x) => x.id !== id);
+    } else {
+      await deleteDoc(doc(db, kind, id));
+    }
+    toast("Konten dihapus");
+    await renderPublic();
+    manager(kind);
+  } catch (e) {
+    toast("Gagal menghapus: " + e.message);
+  }
+}
+
+window.resetForm = () => {
+  $("contentForm")?.reset();
+  if ($("editId")) $("editId").value = "";
+};
+
+function escapeHtml(s = "") {
+  return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+let cachedArticles = [];
+let cachedPortfolio = [];
+let activeArticleCat = "Semua";
+let activePortfolioCat = "Semua";
+
+window.openDetailModal = (kind, id) => {
+  const list = kind === "articles" ? cachedArticles : cachedPortfolio;
+  const item = list.find((x) => x.id === id);
+  if (!item) return;
+  $("detailCategory").textContent = item.category || (kind === "articles" ? "Artikel" : "Portofolio");
+  $("detailTitle").textContent = item.title || "";
+  $("detailSummary").textContent = item.summary || "";
+  $("detailBody").textContent = item.body || item.summary || "";
+  if (item.imageUrl) {
+    $("detailImage").src = item.imageUrl;
+    $("detailImageWrap").classList.remove("hidden");
+  } else {
+    $("detailImageWrap").classList.add("hidden");
+  }
+  $("detailModal").classList.remove("hidden");
+};
+window.closeDetailModal = () => $("detailModal").classList.add("hidden");
+
+window.setArticleCategory = (cat) => {
+  activeArticleCat = cat;
+  renderArticlesUI();
+};
+window.filterArticles = () => renderArticlesUI();
+
+window.setPortfolioCategory = (cat) => {
+  activePortfolioCat = cat;
+  renderPortfolioUI();
+};
+
+function renderArticlesUI() {
+  const cats = ["Semua", ...new Set(cachedArticles.map((x) => x.category || "Umum"))];
+  $("articleCategoryPills").innerHTML = cats.map((c) => `
+    <button type="button" data-cat="${escapeHtml(c)}" class="article-cat-btn px-3.5 py-1.5 rounded-full text-[11px] font-bold transition border ${activeArticleCat === c ? "bg-sky-500 text-white border-sky-500" : "border-sky-400/25 hover:border-sky-400"}">
+      ${escapeHtml(c)}
+    </button>`).join("");
+  $("articleCategoryPills").querySelectorAll(".article-cat-btn").forEach((btn) => {
+    btn.onclick = () => setArticleCategory(btn.dataset.cat);
+  });
+
+  const q = ($("articleSearch")?.value || "").trim().toLowerCase();
+  const filtered = cachedArticles.filter((x) => {
+    const matchCat = activeArticleCat === "Semua" || (x.category || "Umum") === activeArticleCat;
+    const matchQ = !q || (x.title || "").toLowerCase().includes(q) || (x.summary || "").toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  if (filtered.length > 0) {
+    const lead = filtered[0];
+    $("featuredArticleSlot").innerHTML = `
+      <article data-open-id="${escapeHtml(lead.id)}" class="article-open-card cursor-pointer tile-card rounded-3xl p-6 sm:p-7 grid grid-cols-1 md:grid-cols-[1.3fr_0.7fr] gap-5 items-center">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-sky-500/15 text-sky-400 text-[10px] font-extrabold tracking-widest uppercase mb-2">ARTIKEL UTAMA · ${escapeHtml(lead.category || "Umum")}</span>
+          <h3 class="text-xl sm:text-2xl font-extrabold leading-snug mb-2">${escapeHtml(lead.title)}</h3>
+          <p class="text-xs sm:text-sm leading-relaxed mb-4" style="color:var(--text-sub)">${escapeHtml(lead.summary || "")}</p>
+          <span class="text-xs font-bold text-sky-400">Baca Selengkapnya →</span>
+        </div>
+        <div class="rounded-2xl overflow-hidden h-44 bg-gradient-to-br from-sky-500/20 to-slate-900/60 border border-sky-400/20 flex items-center justify-center">
+          ${lead.imageUrl ? `<img src="${escapeHtml(lead.imageUrl)}" alt="${escapeHtml(lead.title)}" class="w-full h-full object-cover" onerror="this.style.display='none'">` : `<span class="text-4xl text-sky-400/60">✎</span>`}
+        </div>
+      </article>`;
+    $("featuredArticleSlot").querySelectorAll(".article-open-card").forEach((el) => {
+      el.onclick = () => openDetailModal("articles", el.dataset.openId);
+    });
+  } else {
+    $("featuredArticleSlot").innerHTML = "";
+  }
+
+  $("articleCards").innerHTML = filtered.length
+    ? filtered.map((x) => `
+      <article data-open-id="${escapeHtml(x.id)}" class="article-open-card cursor-pointer tile-card rounded-3xl p-5 flex flex-col justify-between">
+        <div>
+          ${x.imageUrl ? `<img src="${escapeHtml(x.imageUrl)}" alt="${escapeHtml(x.title)}" class="w-full h-40 object-cover rounded-2xl mb-3" onerror="this.style.display='none'">` : ""}
+          <div class="text-[10px] font-bold tracking-widest uppercase text-sky-500 mb-1.5">${escapeHtml(x.category || "Umum")}</div>
+          <h3 class="text-base font-bold mb-1.5 leading-snug">${escapeHtml(x.title)}</h3>
+          <p class="text-xs sm:text-sm leading-relaxed mb-4" style="color:var(--text-sub)">${escapeHtml(x.summary || "")}</p>
+        </div>
+        <span class="text-[11px] font-bold text-sky-400">Baca Artikel →</span>
+      </article>`).join("")
+    : '<p class="text-xs opacity-70">Tidak ada artikel yang cocok.</p>';
+
+  $("articleCards").querySelectorAll(".article-open-card").forEach((el) => {
+    el.onclick = () => openDetailModal("articles", el.dataset.openId);
+  });
+}
+
+function renderPortfolioUI() {
+  const cats = ["Semua", ...new Set(cachedPortfolio.map((x) => x.category || "Umum"))];
+  $("portfolioCategoryPills").innerHTML = cats.map((c) => `
+    <button type="button" data-cat="${escapeHtml(c)}" class="portfolio-cat-btn px-3.5 py-1.5 rounded-full text-[11px] font-bold transition border ${activePortfolioCat === c ? "bg-sky-500 text-white border-sky-500" : "border-sky-400/25 hover:border-sky-400"}">
+      ${escapeHtml(c)}
+    </button>`).join("");
+  $("portfolioCategoryPills").querySelectorAll(".portfolio-cat-btn").forEach((btn) => {
+    btn.onclick = () => setPortfolioCategory(btn.dataset.cat);
+  });
+
+  const filtered = cachedPortfolio.filter((x) => activePortfolioCat === "Semua" || (x.category || "Umum") === activePortfolioCat);
+  $("portfolioCards").innerHTML = filtered.length
+    ? filtered.map((x) => `
+      <article data-open-id="${escapeHtml(x.id)}" class="portfolio-open-card cursor-pointer tile-card rounded-3xl overflow-hidden flex flex-col group">
+        <div class="h-44 bg-gradient-to-br from-sky-500/20 via-slate-800/60 to-slate-950/80 flex items-center justify-center overflow-hidden border-b" style="border-color:var(--border-soft)">
+          ${x.imageUrl ? `<img src="${escapeHtml(x.imageUrl)}" alt="${escapeHtml(x.title)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.style.display='none'">` : `<span class="text-4xl text-sky-400/70">✧</span>`}
+        </div>
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="text-[10px] font-bold tracking-widest uppercase text-sky-500 mb-1">${escapeHtml(x.category || "Design")}</div>
+            <h3 class="text-base font-bold mb-1.5 leading-snug">${escapeHtml(x.title)}</h3>
+            <p class="text-xs sm:text-sm leading-relaxed mb-3" style="color:var(--text-sub)">${escapeHtml(x.summary || "")}</p>
+          </div>
+          <span class="text-[11px] font-bold text-sky-400">Lihat Detail Karya ↗</span>
+        </div>
+      </article>`).join("")
+    : '<p class="text-xs opacity-70">Belum ada karya portofolio.</p>';
+
+  $("portfolioCards").querySelectorAll(".portfolio-open-card").forEach((el) => {
+    el.onclick = () => openDetailModal("portfolio", el.dataset.openId);
+  });
+}
+
+async function renderPublic() {
+  if (configured && !demoMode) {
+    try {
+      const snap = await getDoc(doc(db, "settings", "site"));
+      if (snap.exists()) {
+        const d = snap.data();
+        siteSettings = {
+          ...siteSettings,
+          ...d,
+          photos: { ...siteSettings.photos, ...(d.photos || {}) },
+          socials: { ...siteSettings.socials, ...(d.socials || {}) }
+        };
+      }
+    } catch (e) {
+      // Gunakan default jika dokumen settings/site belum dibuat
+    }
+  }
+  applySiteSettings();
+
+  try {
+    cachedArticles = await loadCollection("articles", true);
+    renderArticlesUI();
+  } catch (e) {
+    $("articleCards").innerHTML = '<p class="text-xs opacity-70">Konten artikel belum dapat dimuat.</p>';
+  }
+  try {
+    cachedPortfolio = await loadCollection("portfolio", true);
+    renderPortfolioUI();
+  } catch (e) {
+    $("portfolioCards").innerHTML = '<p class="text-xs opacity-70">Konten portofolio belum dapat dimuat.</p>';
+  }
+}
+
+renderPublic();
+</script>
+</body>
+</html>
