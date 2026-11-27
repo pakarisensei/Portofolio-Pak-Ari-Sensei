@@ -45,37 +45,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
   return (
     <div id="page-home" className="page-view active">
       <main id="home" className="hero-outer rounded-[36px] sm:rounded-[48px] p-3 sm:p-6 lg:p-8">
-        {/* SLOT 1: FOTO UTAMA (DIKELOLA KHUSUS LEWAT CMS ADMIN) */}
-        <div className="hero-portrait-layer" id="heroPortraitSlot">
-          {photos.hero ? (
-            <img
-              id="heroPortraitImg"
-              src={photos.hero}
-              alt="Foto Utama"
-              style={{
-                transform: `translateY(${heroTransform.offsetY || 0}px) scale(${(heroTransform.scale || 100) / 100})`,
-                transformOrigin: 'bottom center',
-              }}
-            />
-          ) : (
-            <div className="w-[240px] sm:w-[300px] h-[400px] sm:h-[500px] rounded-t-[150px] rounded-b-3xl border border-sky-400/25 bg-sky-950/30 backdrop-blur-md flex flex-col items-center justify-center text-center p-6 gap-2">
-              <div className="text-xs font-extrabold tracking-[0.25em] opacity-80">ARI SENSEI</div>
-              <p className="text-[11px] leading-relaxed opacity-60 max-w-[200px]">
-                Foto utama dikelola melalui Dashboard CMS Admin.
-              </p>
-            </div>
-          )}
-        </div>
-
         {/* BAGIAN 1: KARTU HEADER ATAS (NOTCH PORTOFOLIO + AVATAR + JUDUL BESAR) */}
         <section className="top-solid-card rounded-[30px] sm:rounded-[38px] p-4 sm:p-7 relative z-10 min-h-[270px] sm:min-h-[300px] flex flex-col justify-between">
           {/* Top Notch Row */}
-          <div className="grid grid-cols-3 items-center mb-4">
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 mb-4">
             <div></div>
-            <div className="portfolio-notch-pill justify-self-center px-6 sm:px-12 py-2 rounded-full text-[10px] sm:text-xs font-extrabold">
+            <div className="portfolio-notch-pill justify-self-center px-5 sm:px-12 py-2 rounded-full text-[10px] sm:text-xs font-extrabold">
               PORTOFOLIO
             </div>
-            <div className="justify-self-end flex items-center gap-2 pr-1" aria-hidden="true">
+            <div className="justify-self-end flex items-center gap-1.5 sm:gap-2 pr-1" aria-hidden="true">
               <span className="window-dot"></span>
               <span className="window-dot"></span>
               <span className="window-dot"></span>
@@ -173,6 +151,28 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
           </div>
         </section>
+
+        {/* SLOT 1: FOTO UTAMA (DIKELOLA KHUSUS LEWAT CMS ADMIN) */}
+        <div className="hero-portrait-layer" id="heroPortraitSlot">
+          {photos.hero ? (
+            <img
+              id="heroPortraitImg"
+              src={photos.hero}
+              alt="Foto Utama"
+              style={{
+                transform: `translateY(${heroTransform.offsetY || 0}px) scale(${(heroTransform.scale || 100) / 100})`,
+                transformOrigin: 'bottom center',
+              }}
+            />
+          ) : (
+            <div className="w-[220px] sm:w-[300px] h-[280px] sm:h-[500px] rounded-t-[150px] rounded-b-3xl border border-sky-400/25 bg-sky-950/30 backdrop-blur-md flex flex-col items-center justify-center text-center p-5 sm:p-6 gap-2">
+              <div className="text-xs font-extrabold tracking-[0.25em] opacity-80">ARI SENSEI</div>
+              <p className="text-[11px] leading-relaxed opacity-60 max-w-[200px]">
+                Foto utama dikelola melalui Dashboard CMS Admin.
+              </p>
+            </div>
+          )}
+        </div>
 
         {/* BAGIAN 2: AREA TENGAH & BAWAH (DOCK KIRI + WIDGET iOS + KARTU MENYATU + GALERI KANAN) */}
         <div className="relative z-20 mt-5 grid grid-cols-[48px_1fr_52px] sm:grid-cols-[84px_1fr_74px] gap-2.5 sm:gap-5 items-stretch">

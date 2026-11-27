@@ -1,34 +1,205 @@
 @import "tailwindcss";
 
 /* =========================================================
+   REGISTERED COLOR PROPERTIES FOR FLUID GRADIENT & THEME TRANSITIONS
+   ========================================================= */
+@property --text-main {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f4f8fc;
+}
+@property --text-sub {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #c9d8e4;
+}
+@property --text-muted {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #8fa5b8;
+}
+@property --panel-solid {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #05080c;
+}
+@property --weather-icon {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0b1620;
+}
+@property --border-soft {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(198, 225, 244, 0.16);
+}
+@property --border-strong {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(198, 225, 244, 0.34);
+}
+@property --right-dock-top {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(10, 16, 23, 0.95);
+}
+@property --right-dock-top-text {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #eef6fc;
+}
+@property --right-dock-bottom-text {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0b1620;
+}
+@property --tagline-bg {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #04070b;
+}
+@property --tagline-text {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #edf6fd;
+}
+@property --modal-bg {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0b1622;
+}
+@property --input-bg {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #06111c;
+}
+@property --bg-base-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #071018;
+}
+@property --bg-base-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #112230;
+}
+@property --bg-base-3 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #05090e;
+}
+@property --nav-stop-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(22, 31, 40, 0.92);
+}
+@property --nav-stop-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(8, 12, 17, 0.96);
+}
+@property --frame-stop-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(16, 26, 36, 0.72);
+}
+@property --frame-stop-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(9, 15, 22, 0.88);
+}
+@property --glass-stop-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(17, 29, 41, 0.86);
+}
+@property --glass-stop-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(7, 13, 20, 0.94);
+}
+@property --dock-stop-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(24, 35, 46, 0.90);
+}
+@property --dock-stop-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(8, 13, 19, 0.94);
+}
+@property --pill-stop-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1b2836;
+}
+@property --pill-stop-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0d141c;
+}
+@property --headline-stop-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #ffffff;
+}
+@property --headline-stop-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #dce8f2;
+}
+@property --headline-stop-3 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #8fa5b8;
+}
+
+/* =========================================================
    THEME TOKENS: MODE GELAP (DEFAULT) & MODE TERANG
    ========================================================= */
 :root,
 [data-theme="dark"] {
+  --bg-base-1: #071018;
+  --bg-base-2: #112230;
+  --bg-base-3: #05090e;
+  --nav-stop-1: rgba(22, 31, 40, 0.92);
+  --nav-stop-2: rgba(8, 12, 17, 0.96);
+  --frame-stop-1: rgba(16, 26, 36, 0.72);
+  --frame-stop-2: rgba(9, 15, 22, 0.88);
+  --glass-stop-1: rgba(17, 29, 41, 0.86);
+  --glass-stop-2: rgba(7, 13, 20, 0.94);
+  --dock-stop-1: rgba(24, 35, 46, 0.90);
+  --dock-stop-2: rgba(8, 13, 19, 0.94);
+  --pill-stop-1: #1b2836;
+  --pill-stop-2: #0d141c;
+  --headline-stop-1: #ffffff;
+  --headline-stop-2: #dce8f2;
+  --headline-stop-3: #8fa5b8;
+
   --page-bg:
     radial-gradient(circle at 10% 14%, rgba(114, 158, 184, 0.52) 0%, transparent 34%),
     radial-gradient(circle at 90% 10%, rgba(92, 135, 160, 0.44) 0%, transparent 34%),
     radial-gradient(circle at 86% 70%, rgba(69, 112, 138, 0.38) 0%, transparent 38%),
     radial-gradient(circle at 14% 86%, rgba(74, 114, 138, 0.34) 0%, transparent 36%),
-    linear-gradient(155deg, #071018 0%, #112230 50%, #05090e 100%);
+    linear-gradient(155deg, var(--bg-base-1) 0%, var(--bg-base-2) 50%, var(--bg-base-3) 100%);
   --text-main: #f4f8fc;
   --text-sub: #c9d8e4;
   --text-muted: #8fa5b8;
-  --nav-bg: linear-gradient(180deg, rgba(22, 31, 40, 0.92), rgba(8, 12, 17, 0.96));
+  --nav-bg: linear-gradient(180deg, var(--nav-stop-1), var(--nav-stop-2));
   --frame-bg:
     radial-gradient(circle at 38% 42%, rgba(96, 146, 178, 0.30) 0%, transparent 46%),
-    linear-gradient(180deg, rgba(16, 26, 36, 0.72) 0%, rgba(9, 15, 22, 0.88) 100%);
+    linear-gradient(180deg, var(--frame-stop-1) 0%, var(--frame-stop-2) 100%);
   --panel-solid: #05080c;
-  --panel-glass: linear-gradient(160deg, rgba(17, 29, 41, 0.86), rgba(7, 13, 20, 0.94));
-  --dock-bg: linear-gradient(180deg, rgba(24, 35, 46, 0.90), rgba(8, 13, 19, 0.94));
-  --pill-bg: linear-gradient(180deg, #1b2836, #0d141c);
+  --panel-glass: linear-gradient(160deg, var(--glass-stop-1), var(--glass-stop-2));
+  --dock-bg: linear-gradient(180deg, var(--dock-stop-1), var(--dock-stop-2));
+  --pill-bg: linear-gradient(180deg, var(--pill-stop-1), var(--pill-stop-2));
   --weather-bg: linear-gradient(145deg, rgba(198, 220, 235, 0.72), rgba(88, 115, 134, 0.45) 55%, rgba(16, 26, 35, 0.90));
   --weather-icon: #0b1620;
   --control-bg: linear-gradient(155deg, rgba(145, 175, 196, 0.30), rgba(18, 30, 42, 0.78));
   --photo-stack-bg: linear-gradient(160deg, rgba(190, 214, 230, 0.34), rgba(22, 36, 50, 0.82));
   --border-soft: rgba(198, 225, 244, 0.16);
   --border-strong: rgba(198, 225, 244, 0.34);
-  --headline-grad: linear-gradient(180deg, #ffffff 0%, #dce8f2 55%, #8fa5b8 100%);
+  --headline-grad: linear-gradient(180deg, var(--headline-stop-1) 0%, var(--headline-stop-2) 55%, var(--headline-stop-3) 100%);
   --shadow-heavy: 0 30px 90px rgba(0, 0, 0, 0.72);
   --shadow-card: 0 18px 40px rgba(0, 0, 0, 0.55);
   --dot-bg: radial-gradient(circle at 35% 30%, #d3dfe8, #758c9c);
@@ -43,29 +214,46 @@
 }
 
 [data-theme="light"] {
+  --bg-base-1: #e7f0f7;
+  --bg-base-2: #d4e3ee;
+  --bg-base-3: #eaf2f8;
+  --nav-stop-1: rgba(255, 255, 255, 0.92);
+  --nav-stop-2: rgba(236, 244, 250, 0.96);
+  --frame-stop-1: rgba(242, 248, 252, 0.85);
+  --frame-stop-2: rgba(223, 235, 244, 0.92);
+  --glass-stop-1: rgba(255, 255, 255, 0.88);
+  --glass-stop-2: rgba(235, 244, 251, 0.94);
+  --dock-stop-1: rgba(255, 255, 255, 0.92);
+  --dock-stop-2: rgba(230, 240, 248, 0.95);
+  --pill-stop-1: #ffffff;
+  --pill-stop-2: #e2edf5;
+  --headline-stop-1: #0b1826;
+  --headline-stop-2: #1d3c57;
+  --headline-stop-3: #476c8a;
+
   --page-bg:
     radial-gradient(circle at 10% 14%, rgba(165, 211, 240, 0.65) 0%, transparent 38%),
     radial-gradient(circle at 90% 12%, rgba(186, 222, 245, 0.60) 0%, transparent 36%),
     radial-gradient(circle at 82% 76%, rgba(154, 198, 226, 0.45) 0%, transparent 40%),
-    linear-gradient(155deg, #e7f0f7 0%, #d4e3ee 50%, #eaf2f8 100%);
+    linear-gradient(155deg, var(--bg-base-1) 0%, var(--bg-base-2) 50%, var(--bg-base-3) 100%);
   --text-main: #0d1a26;
   --text-sub: #334a5e;
   --text-muted: #587085;
-  --nav-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(236, 244, 250, 0.96));
+  --nav-bg: linear-gradient(180deg, var(--nav-stop-1), var(--nav-stop-2));
   --frame-bg:
     radial-gradient(circle at 38% 42%, rgba(140, 194, 230, 0.35) 0%, transparent 48%),
-    linear-gradient(180deg, rgba(242, 248, 252, 0.85) 0%, rgba(223, 235, 244, 0.92) 100%);
+    linear-gradient(180deg, var(--frame-stop-1) 0%, var(--frame-stop-2) 100%);
   --panel-solid: #ffffff;
-  --panel-glass: linear-gradient(160deg, rgba(255, 255, 255, 0.88), rgba(235, 244, 251, 0.94));
-  --dock-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(230, 240, 248, 0.95));
-  --pill-bg: linear-gradient(180deg, #ffffff, #e2edf5);
+  --panel-glass: linear-gradient(160deg, var(--glass-stop-1), var(--glass-stop-2));
+  --dock-bg: linear-gradient(180deg, var(--dock-stop-1), var(--dock-stop-2));
+  --pill-bg: linear-gradient(180deg, var(--pill-stop-1), var(--pill-stop-2));
   --weather-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(196, 220, 238, 0.85));
   --weather-icon: #163047;
   --control-bg: linear-gradient(155deg, rgba(255, 255, 255, 0.82), rgba(214, 230, 242, 0.86));
   --photo-stack-bg: linear-gradient(160deg, rgba(255, 255, 255, 0.85), rgba(215, 231, 243, 0.90));
   --border-soft: rgba(15, 36, 56, 0.12);
   --border-strong: rgba(15, 36, 56, 0.24);
-  --headline-grad: linear-gradient(180deg, #0b1826 0%, #1d3c57 58%, #476c8a 100%);
+  --headline-grad: linear-gradient(180deg, var(--headline-stop-1) 0%, var(--headline-stop-2) 58%, var(--headline-stop-3) 100%);
   --shadow-heavy: 0 28px 80px rgba(15, 36, 56, 0.16);
   --shadow-card: 0 14px 32px rgba(15, 36, 56, 0.12);
   --dot-bg: radial-gradient(circle at 35% 30%, #9ab3c7, #567085);
@@ -79,20 +267,71 @@
   --input-bg: #eef4f9;
 }
 
-* {
-  box-sizing: border-box;
+/* =========================================================
+   GLOBAL SMOOTH THEME TRANSITION
+   ========================================================= */
+:root {
+  --theme-transition-duration: 0.4s;
+  --theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 html {
   scroll-behavior: smooth;
+  transition:
+    --text-main var(--theme-transition-duration) var(--theme-transition-timing),
+    --text-sub var(--theme-transition-duration) var(--theme-transition-timing),
+    --text-muted var(--theme-transition-duration) var(--theme-transition-timing),
+    --panel-solid var(--theme-transition-duration) var(--theme-transition-timing),
+    --weather-icon var(--theme-transition-duration) var(--theme-transition-timing),
+    --border-soft var(--theme-transition-duration) var(--theme-transition-timing),
+    --border-strong var(--theme-transition-duration) var(--theme-transition-timing),
+    --right-dock-top var(--theme-transition-duration) var(--theme-transition-timing),
+    --right-dock-top-text var(--theme-transition-duration) var(--theme-transition-timing),
+    --right-dock-bottom-text var(--theme-transition-duration) var(--theme-transition-timing),
+    --tagline-bg var(--theme-transition-duration) var(--theme-transition-timing),
+    --tagline-text var(--theme-transition-duration) var(--theme-transition-timing),
+    --modal-bg var(--theme-transition-duration) var(--theme-transition-timing),
+    --input-bg var(--theme-transition-duration) var(--theme-transition-timing),
+    --bg-base-1 var(--theme-transition-duration) var(--theme-transition-timing),
+    --bg-base-2 var(--theme-transition-duration) var(--theme-transition-timing),
+    --bg-base-3 var(--theme-transition-duration) var(--theme-transition-timing),
+    --nav-stop-1 var(--theme-transition-duration) var(--theme-transition-timing),
+    --nav-stop-2 var(--theme-transition-duration) var(--theme-transition-timing),
+    --frame-stop-1 var(--theme-transition-duration) var(--theme-transition-timing),
+    --frame-stop-2 var(--theme-transition-duration) var(--theme-transition-timing),
+    --glass-stop-1 var(--theme-transition-duration) var(--theme-transition-timing),
+    --glass-stop-2 var(--theme-transition-duration) var(--theme-transition-timing),
+    --dock-stop-1 var(--theme-transition-duration) var(--theme-transition-timing),
+    --dock-stop-2 var(--theme-transition-duration) var(--theme-transition-timing),
+    --pill-stop-1 var(--theme-transition-duration) var(--theme-transition-timing),
+    --pill-stop-2 var(--theme-transition-duration) var(--theme-transition-timing),
+    --headline-stop-1 var(--theme-transition-duration) var(--theme-transition-timing),
+    --headline-stop-2 var(--theme-transition-duration) var(--theme-transition-timing),
+    --headline-stop-3 var(--theme-transition-duration) var(--theme-transition-timing);
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: var(--theme-transition-duration);
+  transition-timing-function: var(--theme-transition-timing);
+}
+
 body {
   margin: 0;
   color: var(--text-main);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--page-bg);
+  background-color: var(--bg-base-1);
   min-height: 100vh;
   overflow-x: hidden;
-  transition: background 0.35s ease, color 0.35s ease;
+  transition:
+    background var(--theme-transition-duration) var(--theme-transition-timing),
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing);
 }
 
 .font-display {
@@ -209,7 +448,12 @@ body {
   border: 1px solid var(--border-soft);
   backdrop-filter: blur(16px);
   box-shadow: var(--shadow-card);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    border-color var(--theme-transition-duration) var(--theme-transition-timing),
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    color var(--theme-transition-duration) var(--theme-transition-timing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
 }
 .tile-card:hover {
   transform: translateY(-3px);
@@ -268,10 +512,17 @@ body {
   }
 }
 @media (max-width: 640px) {
+  .portfolio-notch-pill {
+    letter-spacing: 5px;
+    text-indent: 5px;
+  }
   .hero-portrait-layer {
-    left: 50%;
-    top: 245px;
-    width: 240px;
-    height: 360px;
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 220px;
+    height: 290px;
+    margin: 14px auto -6px;
   }
 }
